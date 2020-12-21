@@ -51,7 +51,7 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    // A placeholder username validation check
+    // A placeholder username(email) validation check
     private boolean isUserNameValid(String username) {
         if (username == null) {
             return false;
