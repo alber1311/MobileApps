@@ -47,10 +47,10 @@ public class RegisterActivity extends AppCompatActivity {
             Toast t = Toast.makeText(this, "You must enter first name to register!", Toast.LENGTH_SHORT);
             t.show();
         }
-        if (isEmail(email) == false) {
+        if (!isEmail(email)) {
             email.setError("Enter a valid email!");
         }
-        if (isPasswordValid(password.getText().toString()) == false) {
+        if (!isPasswordValid(password.getText().toString())) {
             password.setError("Password must have at least 6 characters");
         }
         if(!password.getText().toString().equals(confirmPassword.getText().toString())) {
