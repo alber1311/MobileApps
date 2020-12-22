@@ -31,31 +31,28 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.idConfPass);
         register = findViewById(R.id.register);
 
-        register.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                checkDataEntered();
-            }
-        });
-
     }
 
     //Check if the data input is correct
-    public void checkDataEntered(){
+    public boolean checkDataEntered(){
         if (isEmpty(name)) {
             Toast t = Toast.makeText(this, "You must enter first name to register!", Toast.LENGTH_SHORT);
             t.show();
+            return false;
         }
         if (!isEmail(email)) {
             email.setError("Enter a valid email!");
+            return false;
         }
         if (!isPasswordValid(password.getText().toString())) {
             password.setError("Password must have at least 6 characters");
+            return false;
         }
         if(!password.getText().toString().equals(confirmPassword.getText().toString())) {
             confirmPassword.setError("Passwords must be the same!");
+            return false;
         }
+        return true;
     }
 
     //Checks if an EditText is empty
