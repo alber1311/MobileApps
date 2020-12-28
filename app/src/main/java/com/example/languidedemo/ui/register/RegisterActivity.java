@@ -2,6 +2,7 @@ package com.example.languidedemo.ui.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.languidedemo.*;
+import com.example.languidedemo.database.DatabaseAccess;
+import com.example.languidedemo.ui.student.StudentMainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -31,28 +34,48 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.idConfPass);
         register = findViewById(R.id.register);
 
+
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkDataEntered();
+            }
+        });
+
     }
 
     //Check if the data input is correct
-    public boolean checkDataEntered(){
+    public void checkDataEntered(){
         if (isEmpty(name)) {
             Toast t = Toast.makeText(this, "You must enter first name to register!", Toast.LENGTH_SHORT);
             t.show();
-            return false;
+            return;
         }
         if (!isEmail(email)) {
             email.setError("Enter a valid email!");
-            return false;
+            return;
         }
         if (!isPasswordValid(password.getText().toString())) {
             password.setError("Password must have at least 6 characters");
-            return false;
+            return;
         }
         if(!password.getText().toString().equals(confirmPassword.getText().toString())) {
             confirmPassword.setError("Passwords must be the same!");
-            return false;
+            return;
         }
-        return true;
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        if(databaseAccess.findUser(email.getText().toString(), password.getText().toString())) {
+            Toast.makeText(this, "User already exists!", Toast.LENGTH_SHORT).show();
+        } else {
+            if(!databaseAccess.insert(name.getText().toString(), email.getText().toString(), password.getText().toString())) {
+                Toast.makeText(this, "An error ocurred :(", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Yaay! You got registered :)", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(RegisterActivity.this, StudentMainActivity.class));
+            }
+        }
     }
 
     //Checks if an EditText is empty

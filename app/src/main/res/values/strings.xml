@@ -14,4 +14,9 @@
     <string name="login_failed">Login failed</string>
     <string name="Title">LanGuide</string>
     <string name="action_register">I haven´t got an account</string>
+    <string name="Start_Test">Start Test</string>
+    <string name="See_past_results">See past results</string>
+    <string name="Test">Test</string>
+    <string name="Profile">Profile</string>
+    <string name="StudentMain">Back to Main</string>
 </resources>
