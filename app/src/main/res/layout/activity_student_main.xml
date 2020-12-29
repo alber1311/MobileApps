@@ -31,7 +31,7 @@
         app:backgroundTint="@android:color/background_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.432" />
@@ -67,7 +67,7 @@
             android:enabled="false"
             android:fontFamily="cursive"
             android:text="@string/Test"
-            android:textColor="@color/black"
+            android:textColor="@android:color/tertiary_text_light"
             android:textSize="42sp"
             app:backgroundTint="@android:color/holo_orange_dark"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -34,7 +34,7 @@
             android:enabled="false"
             android:fontFamily="cursive"
             android:text="@string/Profile"
-            android:textColor="@color/black"
+            android:textColor="@android:color/tertiary_text_light"
             android:textSize="42sp"
             app:backgroundTint="@android:color/holo_orange_dark"
             app:layout_constraintBottom_toBottomOf="parent"
