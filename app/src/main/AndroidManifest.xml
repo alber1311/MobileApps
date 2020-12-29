@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LanGuideDemo">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name="com.example.languide.ui.student.ChooseDifficultyActivity" />
         <activity android:name="com.example.languide.ui.student.ChooseTestActivity" />
         <activity android:name="com.example.languide.ui.student.ProfileActivity" />
