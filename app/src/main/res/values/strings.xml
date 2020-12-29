@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LanGuideDemo</string>
+    <string name="app_name">LanGuide</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_name">Name</string>
@@ -18,5 +18,11 @@
     <string name="See_past_results">See past results</string>
     <string name="Test">Test</string>
     <string name="Profile">Profile</string>
-    <string name="StudentMain">Back to Main</string>
+    <string name="role_spinner">Role</string>
+    <string-array name="Role">
+        <item>Student</item>
+        <item>Teacher</item>
+    </string-array>
+    <string name="action_log_out">LOGOUT</string>
+
 </resources>

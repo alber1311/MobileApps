@@ -23,10 +23,7 @@
         app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/idConfPass"
-        app:layout_constraintVertical_bias="0.2"
         app:rippleColor="@android:color/holo_orange_dark" />
 
     <TextView
@@ -41,7 +38,7 @@
         android:fontFamily="cursive"
         android:text="@string/Title"
         android:textColor="@android:color/holo_orange_dark"
-        android:textSize="32sp"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -111,5 +108,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idPass" />
+
+    <Spinner
+        android:id="@+id/idRole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:contentDescription="@string/role_spinner"
+        android:entries="@array/Role"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idConfPass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.languidedemo.database;
+package com.example.languide.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,9 +23,7 @@ public class DatabaseAccess {
         return instance;
     }
 
-    public void open() {
-        if(db == null) this.db = openHelper.getWritableDatabase();
-    }
+    public void open() {    if(db == null) this.db = openHelper.getWritableDatabase();    }
 
     public void close() {
         if(db != null) this.db.close();
@@ -47,5 +45,11 @@ public class DatabaseAccess {
             c.moveToFirst();
             return c.getString(0).equals(password);
         }
+    }
+
+    public String getUsername(String email){
+        c = db.rawQuery("select username from users where email = ?", new String[]{email});
+        c.moveToFirst();
+        return c.getString(0);
     }
 }

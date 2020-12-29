@@ -1,15 +1,14 @@
-package com.example.languidedemo.ui.student;
+package com.example.languide.ui.student;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.languide.*;
 import android.os.Bundle;
-import com.example.languidedemo.*;
 
-public class StudentMainActivity extends AppCompatActivity {
+public class ShowPrevResultsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_main);
+        setContentView(R.layout.activity_show_prev_results);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.languidedemo.ui.register;
+package com.example.languide.ui.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.languidedemo.*;
-import com.example.languidedemo.database.DatabaseAccess;
-import com.example.languidedemo.ui.student.StudentMainActivity;
+import com.example.languide.*;
+import com.example.languide.database.DatabaseAccess;
+import com.example.languide.ui.student.StudentMainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
