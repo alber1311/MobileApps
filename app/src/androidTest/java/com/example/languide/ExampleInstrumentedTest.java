@@ -1,4 +1,4 @@
-package com.example.languidedemo;
+package com.example.languide;
 
 import android.content.Context;
 

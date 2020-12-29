@@ -1,4 +1,4 @@
-package com.example.languidedemo.database;
+package com.example.languide.database;
 
 import android.content.Context;
 

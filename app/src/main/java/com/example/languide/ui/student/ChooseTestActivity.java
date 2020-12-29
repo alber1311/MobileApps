@@ -1,7 +1,7 @@
-package com.example.languidedemo.ui.student;
+package com.example.languide.ui.student;
 
 import androidx.appcompat.app.AppCompatActivity;
-import  com.example.languidedemo.*;
+import  com.example.languide.*;
 
 import android.content.Intent;
 import android.os.Bundle;

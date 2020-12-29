@@ -1,4 +1,4 @@
-package com.example.languidedemo.ui.student;
+package com.example.languide.ui.student;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,8 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import com.example.languidedemo.R;
-import com.example.languidedemo.ui.login.LoginActivity;
+import com.example.languide.R;
+import com.example.languide.ui.login.LoginActivity;
 
 public class ProfileActivity  extends AppCompatActivity {
 

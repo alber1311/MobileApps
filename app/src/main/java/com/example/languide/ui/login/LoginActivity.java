@@ -1,4 +1,4 @@
-package com.example.languidedemo.ui.login;
+package com.example.languide.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.languidedemo.*;
-import com.example.languidedemo.database.DatabaseAccess;
-import com.example.languidedemo.ui.register.RegisterActivity;
-import com.example.languidedemo.ui.student.StudentMainActivity;
+import com.example.languide.*;
+import com.example.languide.database.DatabaseAccess;
+import com.example.languide.ui.register.RegisterActivity;
+import com.example.languide.ui.student.StudentMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

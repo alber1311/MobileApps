@@ -1,11 +1,11 @@
-package com.example.languidedemo.ui.student;
+package com.example.languide.ui.student;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import com.example.languidedemo.R;
+import com.example.languide.R;
 
 public class StudentMainActivity extends AppCompatActivity {
 
