@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.languide.*;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;

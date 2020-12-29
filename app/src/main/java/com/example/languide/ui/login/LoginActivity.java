@@ -33,7 +33,13 @@ public class LoginActivity extends AppCompatActivity {
                 if(!login(emailEditText.getText().toString(),
                         passwordEditText.getText().toString())) {
                 } else {
-                    startActivity(new Intent(LoginActivity.this, StudentMainActivity.class));
+                    Intent intent = new Intent(LoginActivity.this, StudentMainActivity.class);
+                    intent.putExtra("email", emailEditText.getText().toString());
+                    DatabaseAccess databaseAccess = DatabaseAccess.getInstance(LoginActivity.this);
+                    databaseAccess.open();
+                    String name = databaseAccess.getUsername(emailEditText.getText().toString());
+                    intent.putExtra("name", name);
+                    startActivity(intent);
                 }
             }
         });
