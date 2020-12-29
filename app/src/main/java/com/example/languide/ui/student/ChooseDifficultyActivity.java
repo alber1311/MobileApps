@@ -3,6 +3,7 @@ package com.example.languide.ui.student;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.languide.*;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,6 +23,9 @@ public class ChooseDifficultyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_difficulty);
 
+        Intent intent = getIntent();
+        testName = intent.getStringExtra("test_name");
+
         ListView listView;
         ArrayList<String> difficulty = new ArrayList<>();
         difficulty.add("Easy");
@@ -37,7 +41,8 @@ public class ChooseDifficultyActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Intent intent = new Intent(ChooseDifficultyActivity.this, TestActivity.class);
-                //intent.putExtra("test_difficulty", difficulty.get(position));
+                //intent.putExtra("test_Name", testName);
+                //intent.putExtra("test_Difficulty", difficulty.get(position));
                 //startActivity(intent);
             }
         });
