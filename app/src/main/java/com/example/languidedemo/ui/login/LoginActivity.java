@@ -27,17 +27,13 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final TextView registerTextView = findViewById(R.id.idRegister);
         final Button loginButton = findViewById(R.id.idLogin);
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
                 if(!login(emailEditText.getText().toString(),
                         passwordEditText.getText().toString())) {
-                    loadingProgressBar.setVisibility(View.INVISIBLE);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Welcome" + emailEditText.getText().toString(), Toast.LENGTH_LONG).show();
                     startActivity(new Intent(LoginActivity.this, StudentMainActivity.class));
                 }
             }

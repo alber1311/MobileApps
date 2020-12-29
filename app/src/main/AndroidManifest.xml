@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LanGuideDemo">
+        <activity android:name=".ui.student.ChooseDifficultyActivity" />
+        <activity android:name=".ui.student.ChooseTestActivity" />
+        <activity android:name=".ui.student.ProfileActivity" />
         <activity android:name=".ui.student.StudentMainActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
         <activity

@@ -6,19 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.student.StudentMainActivity">
 
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/idTitle3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="216dp"
+        android:fontFamily="cursive"
         android:text="@string/Title"
-        android:textSize="42sp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonStart"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,52 +24,72 @@
         android:id="@+id/buttonStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="216dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:enabled="true"
         android:text="@string/Start_Test"
-        android:textSize="42sp"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:backgroundTint="@android:color/background_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.432" />
 
     <Button
         android:id="@+id/buttonPrevResults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:text="@string/See_past_results"
-        android:textSize="42sp"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonStart"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/buttonTest"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Test"
-        android:textSize="42sp"
+        android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonProfile"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <Button
-        android:id="@+id/buttonProfile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/Profile"
-        android:textSize="42sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonTest" />
+        <Button
+            android:id="@+id/buttonTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:fontFamily="cursive"
+            android:text="@string/Test"
+            android:textColor="@color/black"
+            android:textSize="42sp"
+            app:backgroundTint="@android:color/holo_orange_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <Button
+            android:id="@+id/buttonProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@id/buttonTest"
+            android:layout_toRightOf="@id/buttonTest"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:enabled="true"
+            android:fontFamily="cursive"
+            android:text="@string/Profile"
+            android:textColor="@color/white"
+            android:textSize="42sp"
+            app:backgroundTint="@android:color/holo_orange_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
