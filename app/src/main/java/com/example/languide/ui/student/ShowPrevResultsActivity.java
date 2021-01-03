@@ -1,13 +1,14 @@
 package com.example.languide.ui.student;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.languide.*;
+
+import com.example.languide.R;
 import com.example.languide.api.TestService;
-import com.example.languide.tests.ReadingTest;
 import com.example.languide.tests.ShowTests;
 
-import android.os.Bundle;
-import android.widget.Toast;
+import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,12 +29,12 @@ public class ShowPrevResultsActivity extends AppCompatActivity {
         Call<ShowTests> call = service.loadPrevResults();
         call.enqueue(new Callback<ShowTests>() {
             @Override
-            public void onResponse(Call<ShowTests> call, Response<ShowTests> response) {
+            public void onResponse(@NotNull Call<ShowTests> call, @NotNull Response<ShowTests> response) {
 
             }
 
             @Override
-            public void onFailure(Call<ShowTests> call, Throwable t) {
+            public void onFailure(@NotNull Call<ShowTests> call, @NotNull Throwable t) {
 
             }
         });

@@ -9,7 +9,6 @@ import com.example.languide.R;
 
 public class StudentMainActivity extends AppCompatActivity {
 
-    private String name;
     private String email;
 
     @Override
