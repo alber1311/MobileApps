@@ -18,7 +18,6 @@ public class StudentMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_main);
 
         Intent intent = getIntent();
-        name = intent.getStringExtra("name");
         email = intent.getStringExtra("email");
 
         Button buttonStart = findViewById(R.id.buttonStart);
@@ -41,7 +40,6 @@ public class StudentMainActivity extends AppCompatActivity {
 
     public void openProfile(){
         Intent intent = new Intent(this,ProfileActivity.class);
-        intent.putExtra("profile_name", name);
         intent.putExtra("profile_email", email);
         startActivity(intent);
     }

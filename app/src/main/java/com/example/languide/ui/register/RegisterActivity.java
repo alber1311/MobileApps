@@ -1,5 +1,6 @@
 package com.example.languide.ui.register;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,8 +13,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.languide.*;
-import com.example.languide.database.DatabaseAccess;
 import com.example.languide.ui.student.StudentMainActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -22,6 +26,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText password;
     EditText confirmPassword;
     Button register;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,48 +40,53 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.idConfPass);
         register = findViewById(R.id.register);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkDataEntered();
+                if(checkData()){
+                    registerUser(email.getText().toString(), password.getText().toString());
+                }
             }
         });
 
     }
 
+    public void registerUser(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            startActivity(new Intent(RegisterActivity.this, StudentMainActivity.class));
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
     //Check if the data input is correct
-    public void checkDataEntered(){
+    public boolean checkData(){
         if (isEmpty(name)) {
             Toast t = Toast.makeText(this, "You must enter first name to register!", Toast.LENGTH_SHORT);
             t.show();
-            return;
+            return false;
         }
         if (!isEmail(email)) {
             email.setError("Enter a valid email!");
-            return;
+            return false;
         }
         if (!isPasswordValid(password.getText().toString())) {
             password.setError("Password must have at least 6 characters");
-            return;
+            return false;
         }
         if(!password.getText().toString().equals(confirmPassword.getText().toString())) {
             confirmPassword.setError("Passwords must be the same!");
-            return;
+            return false;
         }
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-        if(databaseAccess.findUser(email.getText().toString(), password.getText().toString())) {
-            Toast.makeText(this, "User already exists!", Toast.LENGTH_SHORT).show();
-        } else {
-            if(!databaseAccess.insert(name.getText().toString(), email.getText().toString(), password.getText().toString())) {
-                Toast.makeText(this, "An error ocurred :(", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Yaay! You got registered :)", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(RegisterActivity.this, StudentMainActivity.class));
-            }
-        }
+        return true;
     }
 
     //Checks if an EditText is empty
@@ -94,5 +105,4 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 5;
     }
-
 }
