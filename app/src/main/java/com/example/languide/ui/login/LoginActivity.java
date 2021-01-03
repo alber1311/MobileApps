@@ -40,21 +40,15 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(checkData()){
-                    login(emailEditText.getText().toString(),passwordEditText.getText().toString());
-                }
+        loginButton.setOnClickListener(v -> {
+            if(checkData()){
+                login(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         });
 
-        registerTextView.setOnClickListener(new TextView.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
+        registerTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -68,14 +62,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(String email, String password){
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    startActivity(new Intent(LoginActivity.this, StudentMainActivity.class));
-                } else {
-                    Toast.makeText(LoginActivity.this, "User not found :(", Toast.LENGTH_SHORT).show();
-                }
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+            if(task.isSuccessful()){
+                startActivity(new Intent(LoginActivity.this, StudentMainActivity.class));
+            } else {
+                Toast.makeText(LoginActivity.this, "User not found :(", Toast.LENGTH_SHORT).show();
             }
         });
     }

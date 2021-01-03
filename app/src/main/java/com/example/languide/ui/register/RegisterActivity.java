@@ -42,12 +42,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(checkData()){
-                    registerUser(email.getText().toString(), password.getText().toString());
-                }
+        register.setOnClickListener(v -> {
+            if(checkData()){
+                registerUser(email.getText().toString(), password.getText().toString());
             }
         });
 
@@ -55,14 +52,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void registerUser(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            startActivity(new Intent(RegisterActivity.this, StudentMainActivity.class));
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if(task.isSuccessful()){
+                        startActivity(new Intent(RegisterActivity.this, StudentMainActivity.class));
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

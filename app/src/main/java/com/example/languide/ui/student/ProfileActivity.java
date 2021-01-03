@@ -3,7 +3,6 @@ package com.example.languide.ui.student;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -15,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileActivity  extends AppCompatActivity {
 
-    TextView textName;
     TextView  textEmail;
     FirebaseAuth mAuth;
 
