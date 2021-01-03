@@ -32,9 +32,11 @@ public class TestActivity extends AppCompatActivity {
         Intent intent = getIntent();
         test = intent.getStringExtra("test_Name");
         difficulty = intent.getStringExtra("test_Difficulty");
+
+        loadTest();
     }
 
-    public void loadTest(View view) {
+    public void loadTest() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl("").addConverterFactory(GsonConverterFactory.create()).build();
         TestService service = retrofit.create(TestService.class);
 

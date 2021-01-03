@@ -47,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
                 registerUser(email.getText().toString(), password.getText().toString());
             }
         });
-
     }
 
     public void registerUser(String email, String password) {
