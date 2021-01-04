@@ -18,14 +18,16 @@ public class ProfileActivity  extends AppCompatActivity {
     TextView textName;
     TextView  textEmail;
 
+    private String name, email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("profile_name");
-        String email = intent.getStringExtra("profile_email");
+        name = intent.getStringExtra("profile_name");
+        email = intent.getStringExtra("profile_email");
 
         Button buttonTest = findViewById(R.id.buttonTest);
         Button buttonLogout = findViewById(R.id.idLogout);
@@ -41,6 +43,8 @@ public class ProfileActivity  extends AppCompatActivity {
 
     public void openStudentMain(){
         Intent intent = new Intent(this,StudentMainActivity.class);
+        intent.putExtra("name",name);
+        intent.putExtra("email",email);
         startActivity(intent);
     }
 
