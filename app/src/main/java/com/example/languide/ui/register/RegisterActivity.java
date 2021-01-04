@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.example.languide.R;
 import com.example.languide.ui.student.StudentMainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText name;
@@ -21,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText password;
     EditText confirmPassword;
     Button register;
+    Spinner role;
 
     private FirebaseAuth mAuth;
 
@@ -34,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.idPass);
         confirmPassword = findViewById(R.id.idConfPass);
         register = findViewById(R.id.register);
+        role = findViewById(R.id.idRole);
 
         mAuth = FirebaseAuth.getInstance();
 

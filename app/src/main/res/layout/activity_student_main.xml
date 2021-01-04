@@ -56,15 +56,17 @@
         style="?android:attr/buttonBarButtonStyle"/>
 
     <LinearLayout
+        style="?attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        style="?android:attr/buttonBarStyle">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <Button
             android:id="@+id/buttonTest"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -75,11 +77,11 @@
             android:textSize="42sp"
             app:backgroundTint="@android:color/holo_orange_dark"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            style="?android:attr/buttonBarButtonStyle"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/buttonProfile"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -91,7 +93,6 @@
             android:textSize="42sp"
             app:backgroundTint="@android:color/holo_orange_dark"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            style="?android:attr/buttonBarButtonStyle"/>
+            app:layout_constraintEnd_toEndOf="parent" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

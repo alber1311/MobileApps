@@ -33,7 +33,6 @@ public class ProfileActivity  extends AppCompatActivity {
         textEmail = findViewById(R.id.idEmailProfile);
 
         textEmail.setText(email);
-
         buttonTest.setOnClickListener(v -> openStudentMain());
         buttonLogout.setOnClickListener(v -> logout());
     }
@@ -41,6 +40,13 @@ public class ProfileActivity  extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        textEmail.setText(email);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         textEmail.setText(email);
     }
@@ -62,4 +68,5 @@ public class ProfileActivity  extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 }
