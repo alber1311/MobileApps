@@ -24,5 +24,6 @@
         <item>Teacher</item>
     </string-array>
     <string name="action_log_out">LOGOUT</string>
+    <string name="test_content">contents of Test</string>
 
 </resources>
