@@ -16,9 +16,6 @@ public class StudentMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_main);
 
-        Intent intent = getIntent();
-        email = intent.getStringExtra("email");
-
         Button buttonStart = findViewById(R.id.buttonStart);
         Button buttonPrevResults = findViewById(R.id.buttonPrevResults);
         Button buttonProfile = findViewById(R.id.buttonProfile);
@@ -39,7 +36,6 @@ public class StudentMainActivity extends AppCompatActivity {
 
     public void openProfile(){
         Intent intent = new Intent(this,ProfileActivity.class);
-        intent.putExtra("profile_email", email);
         startActivity(intent);
     }
 }

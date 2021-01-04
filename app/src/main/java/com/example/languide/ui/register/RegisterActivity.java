@@ -9,11 +9,19 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.languide.R;
 import com.example.languide.ui.student.StudentMainActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -25,6 +33,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button register;
     Spinner role;
 
+
+    private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
     @Override
@@ -40,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         role = findViewById(R.id.idRole);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         register.setOnClickListener(v -> {
             if(checkData()){
@@ -52,6 +63,18 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if(task.isSuccessful()){
+                        String nameString = name.getText().toString();
+                        String roleString = role.getSelectedItem().toString();
+                        String userID = mAuth.getCurrentUser().getUid();
+                        DocumentReference documentReference = db.collection("users").document(userID);
+                        Map<String, Object> user = new HashMap<>();
+
+                        user.put("Email", email);
+                        user.put("Name", nameString);
+                        user.put("Role", roleString);
+
+                        documentReference.set(user);
+
                         startActivity(new Intent(RegisterActivity.this, StudentMainActivity.class));
                     } else {
                         Toast.makeText(RegisterActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();

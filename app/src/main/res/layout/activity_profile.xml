@@ -80,7 +80,6 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:text="EMAIL"
             android:textSize="16sp"
             app:layout_constraintHorizontal_bias="1.0" />
 
@@ -92,7 +91,6 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:text="NAME"
             android:textSize="16sp"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_alignParentStart="true"
@@ -106,7 +104,6 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:text="ROLE"
             android:textSize="16sp"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_alignParentStart="true"

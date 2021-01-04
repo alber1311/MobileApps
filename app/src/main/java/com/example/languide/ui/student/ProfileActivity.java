@@ -1,5 +1,6 @@
 package com.example.languide.ui.student;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,12 +12,21 @@ import android.widget.TextView;
 import com.example.languide.R;
 import com.example.languide.ui.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class ProfileActivity  extends AppCompatActivity {
 
     TextView  textEmail;
+    TextView textName;
+    TextView textRole;
     String email;
     FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,31 +34,31 @@ public class ProfileActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         mAuth = FirebaseAuth.getInstance();
-
-        Intent intent = getIntent();
-        email = intent.getStringExtra("profile_email");
+        db = FirebaseFirestore.getInstance();
 
         Button buttonTest = findViewById(R.id.buttonTest);
         Button buttonLogout = findViewById(R.id.idLogout);
         textEmail = findViewById(R.id.idEmailProfile);
+        textName = findViewById(R.id.idNameProfile);
+        textRole = findViewById(R.id.idRoleProfile);
 
-        textEmail.setText(email);
+        userID = mAuth.getCurrentUser().getUid();
+
         buttonTest.setOnClickListener(v -> openStudentMain());
         buttonLogout.setOnClickListener(v -> logout());
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        textEmail.setText(email);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        textEmail.setText(email);
+        DocumentReference documentReference = db.collection("users").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                String email = "Email:   " + value.getString("Email");
+                String name = "Name:   " + value.getString("Name");
+                String role = "Role:   " + value.getString("Role");
+                textEmail.setText(email);
+                textName.setText(name);
+                textRole.setText(role);
+            }
+        });
     }
 
     public void openStudentMain(){
