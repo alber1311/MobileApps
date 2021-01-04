@@ -23,7 +23,7 @@ public class ShowPrevResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_prev_results);
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("").addConverterFactory(GsonConverterFactory.create()).build();
+        /*Retrofit retrofit = new Retrofit.Builder().baseUrl("").addConverterFactory(GsonConverterFactory.create()).build();
         TestService service = retrofit.create(TestService.class);
 
         Call<ShowTests> call = service.loadPrevResults();
@@ -37,6 +37,6 @@ public class ShowPrevResultsActivity extends AppCompatActivity {
             public void onFailure(@NotNull Call<ShowTests> call, @NotNull Throwable t) {
 
             }
-        });
+        });*/
     }
 }

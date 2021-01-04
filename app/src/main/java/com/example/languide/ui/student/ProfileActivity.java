@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ProfileActivity  extends AppCompatActivity {
 
     TextView  textEmail;
+    String email;
     FirebaseAuth mAuth;
 
     @Override
@@ -25,7 +26,7 @@ public class ProfileActivity  extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         Intent intent = getIntent();
-        String email = intent.getStringExtra("profile_email");
+        email = intent.getStringExtra("profile_email");
 
         Button buttonTest = findViewById(R.id.buttonTest);
         Button buttonLogout = findViewById(R.id.idLogout);
@@ -35,6 +36,13 @@ public class ProfileActivity  extends AppCompatActivity {
 
         buttonTest.setOnClickListener(v -> openStudentMain());
         buttonLogout.setOnClickListener(v -> logout());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        textEmail.setText(email);
     }
 
     public void openStudentMain(){

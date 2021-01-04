@@ -33,7 +33,7 @@ public class TestActivity extends AppCompatActivity {
         test = intent.getStringExtra("test_Name");
         difficulty = intent.getStringExtra("test_Difficulty");
 
-        loadTest();
+        //loadTest();
     }
 
     public void loadTest() {
