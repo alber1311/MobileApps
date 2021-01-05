@@ -71,6 +71,7 @@ public class ProfileActivity  extends AppCompatActivity {
         builder.setTitle("EXIT");
         builder.setMessage("Are you sure you want to log out?");
         builder.setPositiveButton("YES", (dialog, which) -> {
+            db.terminate();
             mAuth.signOut();
             startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
         });
