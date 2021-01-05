@@ -23,7 +23,6 @@ public class ProfileActivity  extends AppCompatActivity {
     TextView  textEmail;
     TextView textName;
     TextView textRole;
-    String email;
     FirebaseAuth mAuth;
     private FirebaseFirestore db;
     String userID;
