@@ -1,74 +1,93 @@
 package com.example.languide.ui.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.languide.*;
-import com.example.languide.database.DatabaseAccess;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.languide.R;
 import com.example.languide.ui.register.RegisterActivity;
 import com.example.languide.ui.student.StudentMainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private EditText emailEditText;
+    private EditText passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText emailEditText = findViewById(R.id.email);
-        final EditText passwordEditText = findViewById(R.id.password);
+        emailEditText = findViewById(R.id.email);
+        passwordEditText = findViewById(R.id.password);
         final TextView registerTextView = findViewById(R.id.idRegister);
         final Button loginButton = findViewById(R.id.idLogin);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!login(emailEditText.getText().toString(),
-                        passwordEditText.getText().toString())) {
-                } else {
-                    Intent intent = new Intent(LoginActivity.this, StudentMainActivity.class);
-                    intent.putExtra("email", emailEditText.getText().toString());
-                    DatabaseAccess databaseAccess = DatabaseAccess.getInstance(LoginActivity.this);
-                    databaseAccess.open();
-                    String name = databaseAccess.getUsername(emailEditText.getText().toString());
-                    intent.putExtra("name", name);
-                    startActivity(intent);
-                }
+        mAuth = FirebaseAuth.getInstance();
+
+        loginButton.setOnClickListener(v -> {
+            if(checkData()){
+                login(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         });
 
-        registerTextView.setOnClickListener(new TextView.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        registerTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            startActivity(new Intent(LoginActivity.this, StudentMainActivity.class));
+        }
+    }
+
+    public void login(String email, String password){
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+            if(task.isSuccessful()){
+                Intent intent = new Intent(LoginActivity.this, StudentMainActivity.class);
                 startActivity(intent);
+            } else {
+                Toast.makeText(LoginActivity.this, "User not found :(", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public boolean login(String email, String password){
-        if(email.isEmpty()){
-            Toast.makeText(getApplicationContext(), "You have to enter a valid email", Toast.LENGTH_LONG).show();
+    //Check if the data input is correct
+    public boolean checkData(){
+        if (!isEmail(emailEditText)) {
+            emailEditText.setError("Enter a valid email!");
             return false;
-        } else if(password.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "You have to enter a valid password", Toast.LENGTH_LONG).show();
-            return false;
-        } else {
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-            databaseAccess.open();
-            if(!databaseAccess.findUser(email, password)) {
-                Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_LONG).show();
-                return false;
-            } else {
-                return true;
-            }
         }
+        if (!isPasswordValid(passwordEditText.getText().toString())) {
+            passwordEditText.setError("Password must have at least 6 characters");
+            return false;
+        }
+        return true;
+    }
+
+    //Checks if email is valid
+    private boolean isEmail(EditText text) {
+        CharSequence email = text.getText().toString();
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+
+    // A placeholder password validation check
+    private boolean isPasswordValid(String password) {
+        return password != null && password.trim().length() > 5;
     }
 }

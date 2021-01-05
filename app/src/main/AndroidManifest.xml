@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ui.student.ShowPrevResultsActivity"></activity>
+        <activity android:name=".ui.student.TestActivity"></activity>
+        <activity android:name=".ui.student.ShowPrevResultsActivity" />
         <activity android:name=".ui.student.ChooseDifficultyActivity" />
         <activity android:name=".ui.student.ChooseTestActivity" />
         <activity android:name=".ui.student.ProfileActivity" />

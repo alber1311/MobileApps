@@ -36,7 +36,7 @@ public class ChooseTestActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ChooseTestActivity.this, ChooseDifficultyActivity.class);
-                //intent.putExtra("test_name", tests.get(position));
+                intent.putExtra("test_name", tests.get(position));
                 startActivity(intent);
             }
         });

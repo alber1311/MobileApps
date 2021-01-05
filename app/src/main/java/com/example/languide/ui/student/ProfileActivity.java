@@ -1,42 +1,63 @@
 package com.example.languide.ui.student;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.languide.R;
-import com.example.languide.database.DatabaseAccess;
 import com.example.languide.ui.login.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class ProfileActivity  extends AppCompatActivity {
 
-    TextView textName;
     TextView  textEmail;
+    TextView textName;
+    TextView textRole;
+    FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("profile_name");
-        String email = intent.getStringExtra("profile_email");
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         Button buttonTest = findViewById(R.id.buttonTest);
         Button buttonLogout = findViewById(R.id.idLogout);
-        textName = findViewById(R.id.idNameProfile);
         textEmail = findViewById(R.id.idEmailProfile);
+        textName = findViewById(R.id.idNameProfile);
+        textRole = findViewById(R.id.idRoleProfile);
 
-        textName.setText(name);
-        textEmail.setText(email);
+        userID = mAuth.getCurrentUser().getUid();
 
         buttonTest.setOnClickListener(v -> openStudentMain());
         buttonLogout.setOnClickListener(v -> logout());
+
+        DocumentReference documentReference = db.collection("users").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                String email = "Email:   " + value.getString("Email");
+                String name = "Name:   " + value.getString("Name");
+                String role = "Role:   " + value.getString("Role");
+                textEmail.setText(email);
+                textName.setText(name);
+                textRole.setText(role);
+            }
+        });
     }
 
     public void openStudentMain(){
@@ -48,19 +69,14 @@ public class ProfileActivity  extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("EXIT");
         builder.setMessage("Are you sure you want to log out?");
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-            }
+        builder.setPositiveButton("YES", (dialog, which) -> {
+            db.terminate();
+            mAuth.signOut();
+            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
         });
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton("NO", (dialog, which) -> dialog.cancel());
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 }

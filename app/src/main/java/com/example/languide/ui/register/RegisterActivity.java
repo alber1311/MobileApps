@@ -1,19 +1,28 @@
 package com.example.languide.ui.register;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.languide.*;
-import com.example.languide.database.DatabaseAccess;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.languide.R;
 import com.example.languide.ui.student.StudentMainActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -22,6 +31,11 @@ public class RegisterActivity extends AppCompatActivity {
     EditText password;
     EditText confirmPassword;
     Button register;
+    Spinner role;
+
+
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,49 +47,61 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.idPass);
         confirmPassword = findViewById(R.id.idConfPass);
         register = findViewById(R.id.register);
+        role = findViewById(R.id.idRole);
 
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
-
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkDataEntered();
+        register.setOnClickListener(v -> {
+            if(checkData()){
+                registerUser(email.getText().toString(), password.getText().toString());
             }
         });
+    }
 
+    public void registerUser(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if(task.isSuccessful()){
+                        String nameString = name.getText().toString();
+                        String roleString = role.getSelectedItem().toString();
+                        String userID = mAuth.getCurrentUser().getUid();
+                        DocumentReference documentReference = db.collection("users").document(userID);
+                        Map<String, Object> user = new HashMap<>();
+
+                        user.put("Email", email);
+                        user.put("Name", nameString);
+                        user.put("Role", roleString);
+
+                        documentReference.set(user);
+
+                        startActivity(new Intent(RegisterActivity.this, StudentMainActivity.class));
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     //Check if the data input is correct
-    public void checkDataEntered(){
+    public boolean checkData(){
         if (isEmpty(name)) {
             Toast t = Toast.makeText(this, "You must enter first name to register!", Toast.LENGTH_SHORT);
             t.show();
-            return;
+            return false;
         }
         if (!isEmail(email)) {
             email.setError("Enter a valid email!");
-            return;
+            return false;
         }
         if (!isPasswordValid(password.getText().toString())) {
             password.setError("Password must have at least 6 characters");
-            return;
+            return false;
         }
         if(!password.getText().toString().equals(confirmPassword.getText().toString())) {
             confirmPassword.setError("Passwords must be the same!");
-            return;
+            return false;
         }
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-        if(databaseAccess.findUser(email.getText().toString(), password.getText().toString())) {
-            Toast.makeText(this, "User already exists!", Toast.LENGTH_SHORT).show();
-        } else {
-            if(!databaseAccess.insert(name.getText().toString(), email.getText().toString(), password.getText().toString())) {
-                Toast.makeText(this, "An error ocurred :(", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Yaay! You got registered :)", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(RegisterActivity.this, StudentMainActivity.class));
-            }
-        }
+        return true;
     }
 
     //Checks if an EditText is empty
@@ -94,5 +120,4 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 5;
     }
-
 }
