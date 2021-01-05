@@ -107,6 +107,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:text="@string/action_register"
+        android:textColor="@android:color/holo_blue_light"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
