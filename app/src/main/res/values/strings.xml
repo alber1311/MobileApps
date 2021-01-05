@@ -26,5 +26,7 @@
     <string name="action_log_out">LOGOUT</string>
     <string name="Difficulty">Choose Difficulty</string>
     <string name="ChooseTest">Choose Test</string>
+    <string name="iconReading" translatable="false">IconReading</string>
+    <string name="Reading">Reading</string>
 
 </resources>
