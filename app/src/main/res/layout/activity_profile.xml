@@ -40,7 +40,7 @@
             android:enabled="false"
             android:fontFamily="cursive"
             android:text="@string/Profile"
-            android:textColor="@android:color/tertiary_text_light"
+            android:textColor="@android:color/holo_orange_light"
             android:textSize="42sp"
             app:backgroundTint="@android:color/holo_orange_dark"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,21 @@
         android:id="@+id/Separator"
         android:layout_width="match_parent"
         android:layout_height="@dimen/profile_separator"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/idTitle3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="cursive"
+            android:text="@string/Title"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:layout_marginTop="124dp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -65,7 +79,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/action_log_out"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:backgroundTint="@android:color/holo_red_light"
             android:layout_below="@id/idRoleProfile"
             android:layout_marginTop="@dimen/profile_separator"
@@ -80,8 +94,9 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:textSize="16sp"
-            app:layout_constraintHorizontal_bias="1.0" />
+            android:textSize="22sp"
+            app:layout_constraintHorizontal_bias="1.0"
+            android:fontFamily="cursive"/>
 
         <TextView
             android:id="@+id/idNameProfile"
@@ -91,10 +106,11 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:textSize="16sp"
+            android:textSize="22sp"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/idEmailProfile"/>
+            android:layout_below="@id/idEmailProfile"
+            android:fontFamily="cursive"/>
 
         <TextView
             android:id="@+id/idRoleProfile"
@@ -104,10 +120,11 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:textSize="16sp"
+            android:textSize="22sp"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/idNameProfile"/>
+            android:layout_below="@id/idNameProfile"
+            android:fontFamily="cursive"/>
 
     </RelativeLayout>
 
