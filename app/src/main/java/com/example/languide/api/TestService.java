@@ -9,5 +9,8 @@ public interface TestService {
     @GET()
     Call<ReadingTest> loadReadingTest();
     Call<ListeningTest> loadListeningTest();
+    Call<SpeakingTest> loadSpeakingTest();
+    Call<VocabularyTest> loadVocabularyTest();
+    Call<WritingTest> loadWritingTest();
     Call<ShowTests> loadPrevResults();
 }

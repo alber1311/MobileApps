@@ -13,7 +13,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">Login failed</string>
     <string name="Title">LanGuide</string>
-    <string name="action_register">I haven´t got an account</string>
+    <string name="action_register">I haven´t got an account. REGISTER</string>
     <string name="Start_Test">Start Test</string>
     <string name="See_past_results">See past results</string>
     <string name="Test">Test</string>
@@ -24,5 +24,7 @@
         <item>Teacher</item>
     </string-array>
     <string name="action_log_out">LOGOUT</string>
+    <string name="Difficulty">Choose Difficulty</string>
+    <string name="ChooseTest">Choose Test</string>
 
 </resources>

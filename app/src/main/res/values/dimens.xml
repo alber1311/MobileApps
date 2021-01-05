@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">24dp</dimen>
     <dimen name="activity_vertical_margin">24dp</dimen>
     <dimen name="profile_separator">164dp</dimen>
+    <dimen name="profile_separator_landscape">96dp</dimen>
 </resources>
