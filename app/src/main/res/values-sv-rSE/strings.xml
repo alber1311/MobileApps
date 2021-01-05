@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LanGuide</string>
+    <string name="prompt_email">E-post</string>
+    <string name="prompt_name">Namn</string>
+    <string name="prompt_password">Lösenord</string>
+    <string name="prompt_confirm_password">Bekräfta lösenord</string>
+    <string name="action_sign_in">Logga in</string>
+    <string name="action_sign_up">Checka in</string>
+    <string name="action_sign_in_short">Hej</string>
+    <string name="welcome">Välkommen</string>
+    <string name="invalid_username">Ogiltig användare</string>
+    <string name="invalid_password">Lösenordet måste vara >5 tecken</string>
+    <string name="login_failed">Inloggningen misslyckades</string>
+    <string name="action_register">Jag har inget konto. REGISTRERA</string>
+    <string name="Start_Test">Starta testet</string>
+    <string name="See_past_results">Se tidigare resultat</string>
+    <string name="Test">Testa</string>
+    <string name="Profile">Profil</string>
+    <string name="role_spinner">Roll</string>
+    <string name="action_log_out">LOGGA UT</string>
+    <string name="Difficulty">Välj svårighet</string>
+    <string name="ChooseTest">Välj test</string>
+</resources>
