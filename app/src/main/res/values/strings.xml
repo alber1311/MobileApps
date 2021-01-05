@@ -12,7 +12,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">Login failed</string>
-    <string name="Title">LanGuide</string>
+    <string name="Title" translatable="false">LanGuide</string>
     <string name="action_register">I haven´t got an account. REGISTER</string>
     <string name="Start_Test">Start Test</string>
     <string name="See_past_results">See past results</string>
