@@ -22,4 +22,9 @@
     <string name="Difficulty">Escoger dificultad</string>
     <string name="ChooseTest">Escoger Test</string>
     <string name="Reading">Lectura</string>
+    <string name="Finish">Terminar</string>
+    <string name="Vocabulary">Vocabulario</string>
+    <string name="Writing">Escritura</string>
+    <string name="Speaking">Oral</string>
+    <string name="Listening">Escucha</string>
 </resources>

@@ -2,11 +2,10 @@ package com.example.languide.ui.student;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.languide.*;
+import com.example.languide.ui.student.testActivities.*;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,10 +39,38 @@ public class ChooseDifficultyActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Intent intent = new Intent(ChooseDifficultyActivity.this, TestActivity.class);
-                //intent.putExtra("test_Name", testName);
-                //intent.putExtra("test_Difficulty", difficulty.get(position));
-                //startActivity(intent);
+                switch (testName) {
+                    case "Listening":
+                        Intent intent1 = new Intent(ChooseDifficultyActivity.this, ListeningTestActivity.class);
+                        intent1.putExtra("test_Name", testName);
+                        intent1.putExtra("test_Difficulty", difficulty.get(position));
+                        startActivity(intent1);
+                        break;
+                    case "Vocabulary":
+                        Intent intent2 = new Intent(ChooseDifficultyActivity.this, VocabularyTestActivity.class);
+                        intent2.putExtra("test_Name", testName);
+                        intent2.putExtra("test_Difficulty", difficulty.get(position));
+                        startActivity(intent2);
+                        break;
+                    case "Writing":
+                        Intent intent3 = new Intent(ChooseDifficultyActivity.this, WritingTestActivity.class);
+                        intent3.putExtra("test_Name", testName);
+                        intent3.putExtra("test_Difficulty", difficulty.get(position));
+                        startActivity(intent3);
+                        break;
+                    case "Speaking":
+                        Intent intent4 = new Intent(ChooseDifficultyActivity.this, SpeakingTestActivity.class);
+                        intent4.putExtra("test_Name", testName);
+                        intent4.putExtra("test_Difficulty", difficulty.get(position));
+                        startActivity(intent4);
+                        break;
+                    case "Reading":
+                        Intent intent5 = new Intent(ChooseDifficultyActivity.this, ReadingTestActivity.class);
+                        intent5.putExtra("test_Name", testName);
+                        intent5.putExtra("test_Difficulty", difficulty.get(position));
+                        startActivity(intent5);
+                        break;
+                }
             }
         });
 

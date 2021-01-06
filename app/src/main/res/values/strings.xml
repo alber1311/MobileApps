@@ -28,5 +28,10 @@
     <string name="ChooseTest">Choose Test</string>
     <string name="iconReading" translatable="false">IconReading</string>
     <string name="Reading">Reading</string>
+    <string name="Listening">Listening</string>
+    <string name="Vocabulary">Vocabulary</string>
+    <string name="Writing">Writing</string>
+    <string name="Speaking">Speaking</string>
+    <string name="Finish">FINISH</string>
 
 </resources>
