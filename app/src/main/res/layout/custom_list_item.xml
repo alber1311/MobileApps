@@ -5,4 +5,5 @@
     android:fontFamily="cursive"
     android:textSize="38sp"
     android:textAlignment="center"
-    android:gravity="center_horizontal"/>
+    android:gravity="center_horizontal"
+    android:textColor="@color/material_on_background_disabled"/>

@@ -22,4 +22,9 @@
     <string name="Difficulty">Välj svårighet</string>
     <string name="ChooseTest">Välj test</string>
     <string name="Reading">Läsning</string>
+    <string name="Finish">Avsluta</string>
+    <string name="Listening">Lyssnande</string>
+    <string name="Writing">Skrift</string>
+    <string name="Speaking">Tala</string>
+    <string name="Vocabulary">Ordförråd</string>
 </resources>
