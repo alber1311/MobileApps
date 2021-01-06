@@ -34,7 +34,7 @@ public class ChooseDifficultyActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.idListView2);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, difficulty);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.custom_list_item, difficulty);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

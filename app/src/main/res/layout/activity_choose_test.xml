@@ -6,29 +6,110 @@
     android:layout_height="match_parent"
     tools:context=".ui.student.ChooseTestActivity">
 
-    <TextView
-        android:id="@+id/textView2"
+    <RelativeLayout
+        android:id="@+id/Separator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:hint="@string/ChooseTest"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textColorHint="@android:color/holo_orange_dark"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="@dimen/profile_separator"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ListView
-        android:id="@+id/idListView"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:hint="@string/ChooseTest"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textColorHint="@android:color/holo_orange_dark"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="cursive"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
-        android:layout_marginBottom="196dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="82dp" />
+        app:layout_constraintTop_toBottomOf="@id/Separator"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/idListView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="82dp"
+            android:dividerHeight="2dp"/>
+
+        <LinearLayout
+            android:id="@+id/icons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/idIconListening"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="18dp"
+                android:contentDescription="@string/iconReading"
+                app:srcCompat="@drawable/ic_listening"
+                tools:srcCompat="@drawable/ic_listening"
+                android:scaleType="center"/>
+
+            <ImageView
+                android:id="@+id/idIconVocabulary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/iconReading"
+                app:srcCompat="@drawable/ic_vocabulary"
+                tools:srcCompat="@drawable/ic_vocabulary"
+                android:scaleType="center"/>
+
+            <ImageView
+                android:id="@+id/idIconWriting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/iconReading"
+                app:srcCompat="@drawable/ic_writing"
+                tools:srcCompat="@drawable/ic_writing"
+                android:scaleType="center" />
+
+            <ImageView
+                android:id="@+id/idIconSpeaking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="22dp"
+                android:contentDescription="@string/iconReading"
+                app:srcCompat="@drawable/ic_speaking"
+                tools:srcCompat="@drawable/ic_speaking"
+                android:scaleType="center" />
+
+            <ImageView
+                android:id="@+id/idIconReading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/iconReading"
+                app:srcCompat="@drawable/ic_reading"
+                tools:srcCompat="@drawable/ic_reading"
+                android:layout_marginStart="48dp"
+                android:scaleType="center" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
