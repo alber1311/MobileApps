@@ -25,7 +25,19 @@
     </string-array>
     <string name="action_log_out">LOGOUT</string>
     <string name="Difficulty">Choose Difficulty</string>
+    <string-array name="difficulties">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
     <string name="ChooseTest">Choose Test</string>
+    <string-array name="choose">
+        <item>Listening</item>
+        <item>Vocabulary</item>
+        <item>Writing</item>
+        <item>Speaking</item>
+        <item>Reading</item>
+    </string-array>
     <string name="iconReading" translatable="false">IconReading</string>
     <string name="Reading">Reading</string>
     <string name="Listening">Listening</string>

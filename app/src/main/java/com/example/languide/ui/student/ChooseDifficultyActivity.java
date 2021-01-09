@@ -26,51 +26,41 @@ public class ChooseDifficultyActivity extends AppCompatActivity {
         testName = intent.getStringExtra("test_name");
 
         ListView listView;
-        ArrayList<String> difficulty = new ArrayList<>();
-        difficulty.add("Easy");
-        difficulty.add("Medium");
-        difficulty.add("Hard");
-
         listView = findViewById(R.id.idListView2);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.custom_list_item, difficulty);
-        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (testName) {
-                    case "Listening":
+                    if(testName.equals("Listening") || testName.equals("Escucha") || testName.equals("Lyssnande")) {
                         Intent intent1 = new Intent(ChooseDifficultyActivity.this, ListeningTestActivity.class);
                         intent1.putExtra("test_Name", testName);
-                        intent1.putExtra("test_Difficulty", difficulty.get(position));
+                        intent1.putExtra("test_Difficulty", parent.getItemAtPosition(position).toString());
                         startActivity(intent1);
-                        break;
-                    case "Vocabulary":
+                    }
+                    else if(testName.equals("Vocabulary") || testName.equals("Vocabulario") || testName.equals("Ordförråd")) {
                         Intent intent2 = new Intent(ChooseDifficultyActivity.this, VocabularyTestActivity.class);
                         intent2.putExtra("test_Name", testName);
-                        intent2.putExtra("test_Difficulty", difficulty.get(position));
+                        intent2.putExtra("test_Difficulty", parent.getItemAtPosition(position).toString());
                         startActivity(intent2);
-                        break;
-                    case "Writing":
+                    }
+                    else if(testName.equals("Writing") || testName.equals("Escritura") || testName.equals("Skrift")) {
                         Intent intent3 = new Intent(ChooseDifficultyActivity.this, WritingTestActivity.class);
                         intent3.putExtra("test_Name", testName);
-                        intent3.putExtra("test_Difficulty", difficulty.get(position));
+                        intent3.putExtra("test_Difficulty", parent.getItemAtPosition(position).toString());
                         startActivity(intent3);
-                        break;
-                    case "Speaking":
+                    }
+                    else if(testName.equals("Speaking") || testName.equals("Oral") || testName.equals("Tala")) {
                         Intent intent4 = new Intent(ChooseDifficultyActivity.this, SpeakingTestActivity.class);
                         intent4.putExtra("test_Name", testName);
-                        intent4.putExtra("test_Difficulty", difficulty.get(position));
+                        intent4.putExtra("test_Difficulty", parent.getItemAtPosition(position).toString());
                         startActivity(intent4);
-                        break;
-                    case "Reading":
+                    }
+                    else if(testName.equals("Reading") || testName.equals("Lectura") || testName.equals("Läsning")) {
                         Intent intent5 = new Intent(ChooseDifficultyActivity.this, ReadingTestActivity.class);
                         intent5.putExtra("test_Name", testName);
-                        intent5.putExtra("test_Difficulty", difficulty.get(position));
+                        intent5.putExtra("test_Difficulty", parent.getItemAtPosition(position).toString());
                         startActivity(intent5);
-                        break;
-                }
+                    }
             }
         });
 

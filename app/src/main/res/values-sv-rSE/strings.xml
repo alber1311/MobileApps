@@ -24,7 +24,19 @@
     </string-array>
     <string name="action_log_out">LOGGA UT</string>
     <string name="Difficulty">Välj svårighet</string>
+    <string-array name="difficulties">
+        <item>Lätt</item>
+        <item>Medel</item>
+        <item>Hård</item>
+    </string-array>
     <string name="ChooseTest">Välj test</string>
+    <string-array name="choose">
+        <item>Lyssnande</item>
+        <item>Ordförråd</item>
+        <item>Skrift</item>
+        <item>Tala</item>
+        <item>Läsning</item>
+    </string-array>
     <string name="Reading">Läsning</string>
     <string name="Finish">AVSLUTA</string>
     <string name="Listening">Lyssnande</string>

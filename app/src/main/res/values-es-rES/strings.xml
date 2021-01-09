@@ -24,7 +24,19 @@
     </string-array>
     <string name="action_log_out">SALIR</string>
     <string name="Difficulty">Escoger dificultad</string>
+    <string-array name="difficulties">
+        <item>Fácil</item>
+        <item>Medio</item>
+        <item>Difícil</item>
+    </string-array>
     <string name="ChooseTest">Escoger Test</string>
+    <string-array name="choose">
+        <item>Escucha</item>
+        <item>Vocabulario</item>
+        <item>Escritura</item>
+        <item>Oral</item>
+        <item>Lectura</item>
+    </string-array>
     <string name="Reading">Lectura</string>
     <string name="Finish">TERMINAR</string>
     <string name="Vocabulary">Vocabulario</string>
