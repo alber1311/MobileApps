@@ -18,11 +18,15 @@
     <string name="Test">Testa</string>
     <string name="Profile">Profil</string>
     <string name="role_spinner">Roll</string>
+    <string-array name="Role">
+        <item>Studerande</item>
+        <item>Lärare</item>
+    </string-array>
     <string name="action_log_out">LOGGA UT</string>
     <string name="Difficulty">Välj svårighet</string>
     <string name="ChooseTest">Välj test</string>
     <string name="Reading">Läsning</string>
-    <string name="Finish">Avsluta</string>
+    <string name="Finish">AVSLUTA</string>
     <string name="Listening">Lyssnande</string>
     <string name="Writing">Skrift</string>
     <string name="Speaking">Tala</string>

@@ -50,9 +50,9 @@ public class ProfileActivity  extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                String email = "Email:   " + value.getString("Email");
-                String name = "Name:   " + value.getString("Name");
-                String role = "Role:   " + value.getString("Role");
+                String email = ":   " + value.getString("Email");
+                String name = ":   " + value.getString("Name");
+                String role = ":   " + value.getString("Role");
                 textEmail.setText(email);
                 textName.setText(name);
                 textRole.setText(role);
