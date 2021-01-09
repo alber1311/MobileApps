@@ -12,5 +12,4 @@ public interface TestService {
     Call<SpeakingTest> loadSpeakingTest();
     Call<VocabularyTest> loadVocabularyTest();
     Call<WritingTest> loadWritingTest();
-    Call<ShowTests> loadPrevResults();
 }
