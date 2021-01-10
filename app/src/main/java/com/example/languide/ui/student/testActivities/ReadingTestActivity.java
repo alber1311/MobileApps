@@ -40,8 +40,6 @@ public class ReadingTestActivity extends AppCompatActivity {
     private Button finishTest;
     private ListView listView;
 
-    private String test;
-    private String difficulty;
     private int grade = 0;
     private static int position = 0;
 
@@ -57,10 +55,6 @@ public class ReadingTestActivity extends AppCompatActivity {
         exerciseContent = findViewById(R.id.exercise_text);
         finishTest = findViewById(R.id.finishTest);
         listView = findViewById(R.id.choices);
-
-        Intent intent = getIntent();
-        test = intent.getStringExtra("test_Name");
-        difficulty = intent.getStringExtra("test_Difficulty");
 
         loadTest();
     }

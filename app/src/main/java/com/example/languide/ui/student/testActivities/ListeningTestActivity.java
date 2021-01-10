@@ -30,7 +30,7 @@ public class ListeningTestActivity extends AppCompatActivity {
 
     private TextView titleExercise;
     private TextView instructionsExercise;
-    private TextView exerciseContent;
+    private TextView exerciseAudioFile;
     private Button finishTest;
 
     private String exerciseAudio;
@@ -46,13 +46,8 @@ public class ListeningTestActivity extends AppCompatActivity {
 
         titleExercise = findViewById(R.id.idTitleExercise);
         instructionsExercise = findViewById(R.id.test_instructions);
-        exerciseContent = findViewById(R.id.exercise_text);
+        exerciseAudioFile = findViewById(R.id.exercise_text);
         finishTest = findViewById(R.id.finishTest);
-
-        Intent intent = getIntent();
-        test = intent.getStringExtra("test_Name");
-        difficulty = intent.getStringExtra("test_Difficulty");
-
         //loadTest();
     }
 
@@ -65,10 +60,11 @@ public class ListeningTestActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Call<ListeningTest> call, @NotNull Response<ListeningTest> response) {
                 ListeningTest listeningTest = response.body();
-                titleExercise.setText(listeningTest.getData().getTitle());
-                instructionsExercise.setText(listeningTest.getData().getInstructions());
-                exerciseAudio = listeningTest.getAudio();
+                titleExercise.setText(listeningTest.getData().getExercise().getTitle());
+                instructionsExercise.setText(listeningTest.getData().getExercise().getInstructions());
+                exerciseAudio = listeningTest.getData().getExercise().getAudio();
                 //Manage the audio
+
 
                 finishTest.setOnClickListener(v -> {
                     //Save test
