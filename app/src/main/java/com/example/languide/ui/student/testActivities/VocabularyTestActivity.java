@@ -52,8 +52,8 @@ public class VocabularyTestActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<VocabularyTest> call, Response<VocabularyTest> response) {
                 VocabularyTest vocabularyTest = response.body();
-                titleExercise.setText(vocabularyTest.getTitle());
-                instructionsExercise.setText(vocabularyTest.getInstructions());
+                titleExercise.setText(vocabularyTest.getData().getTitle());
+                instructionsExercise.setText(vocabularyTest.getData().getInstructions());
                 //Manage exerciseContent and clickable options
             }
 

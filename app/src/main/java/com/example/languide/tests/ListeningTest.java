@@ -2,28 +2,10 @@ package com.example.languide.tests;
 
 import java.util.List;
 
-public class ListeningTest {
-    private String title;
-    private String instructions;
+public class ListeningTest extends Test{
     private String audio;
     private List<Items> items;
 
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getInstructions() {
-        return instructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
 
     public String getAudio() {
         return audio;

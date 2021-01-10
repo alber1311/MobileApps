@@ -6,7 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface TestService {
-    @GET()
+    @GET("api/exercise/5f6c7c6e0c583f06fabc9634")
     Call<ReadingTest> loadReadingTest();
     Call<ListeningTest> loadListeningTest();
     Call<SpeakingTest> loadSpeakingTest();

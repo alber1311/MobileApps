@@ -53,8 +53,8 @@ public class SpeakingTestActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<SpeakingTest> call, Response<SpeakingTest> response) {
                 SpeakingTest speakingTest = response.body();
-                titleExercise.setText(speakingTest.getTitle());
-                instructionsExercise.setText(speakingTest.getInstructions());
+                titleExercise.setText(speakingTest.getData().getTitle());
+                instructionsExercise.setText(speakingTest.getData().getInstructions());
                 //Manage exerciseContent and clickable options
             }
 

@@ -53,8 +53,8 @@ public class WritingTestActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<WritingTest> call, Response<WritingTest> response) {
                 WritingTest writingTest = response.body();
-                titleExercise.setText(writingTest.getTitle());
-                instructionsExercise.setText(writingTest.getInstructions());
+                titleExercise.setText(writingTest.getData().getTitle());
+                instructionsExercise.setText(writingTest.getData().getInstructions());
                 //Manage exerciseContent and clickable options
             }
 
