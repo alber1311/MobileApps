@@ -6,4 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".ui.student.ShowPrevResultsActivity">
 
+    <RelativeLayout
+        android:id="@+id/Separator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/profile_separator"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:hint="@string/See_past_results"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textColorHint="@android:color/holo_orange_dark"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="cursive"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/Separator"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/idPastTests"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="82dp"
+            android:dividerHeight="2dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

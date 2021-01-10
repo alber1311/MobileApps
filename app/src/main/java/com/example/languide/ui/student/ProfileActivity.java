@@ -47,16 +47,14 @@ public class ProfileActivity  extends AppCompatActivity {
         buttonLogout.setOnClickListener(v -> logout());
 
         DocumentReference documentReference = db.collection("users").document(userID);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                String email = "Email:   " + value.getString("Email");
-                String name = "Name:   " + value.getString("Name");
-                String role = "Role:   " + value.getString("Role");
-                textEmail.setText(email);
-                textName.setText(name);
-                textRole.setText(role);
-            }
+        documentReference.addSnapshotListener(this, (value, error) -> {
+            assert value != null;
+            String email = "Email:   " + value.getString("Email");
+            String name = "Name:   " + value.getString("Name");
+            String role = "Role:   " + value.getString("Role");
+            textEmail.setText(email);
+            textName.setText(name);
+            textRole.setText(role);
         });
     }
 
