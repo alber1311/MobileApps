@@ -37,10 +37,6 @@ public class SpeakingTestActivity extends AppCompatActivity {
         instructionsExercise = findViewById(R.id.test_instructions);
         exerciseContent = findViewById(R.id.exercise_text);
 
-        Intent intent = getIntent();
-        test = intent.getStringExtra("test_Name");
-        difficulty = intent.getStringExtra("test_Difficulty");
-
         //loadTest();
     }
 

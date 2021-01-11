@@ -40,32 +40,22 @@ public class ChooseDifficultyActivity extends AppCompatActivity {
             switch (testName) {
                 case "Listening":
                     Intent intent1 = new Intent(ChooseDifficultyActivity.this, ListeningTestActivity.class);
-                    intent1.putExtra("test_Name", testName);
-                    intent1.putExtra("test_Difficulty", difficulty.get(position));
                     startActivity(intent1);
                     break;
                 case "Vocabulary":
                     Intent intent2 = new Intent(ChooseDifficultyActivity.this, VocabularyTestActivity.class);
-                    intent2.putExtra("test_Name", testName);
-                    intent2.putExtra("test_Difficulty", difficulty.get(position));
                     startActivity(intent2);
                     break;
                 case "Writing":
                     Intent intent3 = new Intent(ChooseDifficultyActivity.this, WritingTestActivity.class);
-                    intent3.putExtra("test_Name", testName);
-                    intent3.putExtra("test_Difficulty", difficulty.get(position));
                     startActivity(intent3);
                     break;
                 case "Speaking":
                     Intent intent4 = new Intent(ChooseDifficultyActivity.this, SpeakingTestActivity.class);
-                    intent4.putExtra("test_Name", testName);
-                    intent4.putExtra("test_Difficulty", difficulty.get(position));
                     startActivity(intent4);
                     break;
                 case "Reading":
                     Intent intent5 = new Intent(ChooseDifficultyActivity.this, ReadingTestActivity.class);
-                    intent5.putExtra("test_Name", testName);
-                    intent5.putExtra("test_Difficulty", difficulty.get(position));
                     startActivity(intent5);
                     break;
             }
