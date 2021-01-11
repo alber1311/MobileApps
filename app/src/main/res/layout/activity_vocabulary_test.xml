@@ -68,6 +68,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
         <Button
+            android:id="@+id/finishTest"
             android:layout_width="64dp"
             android:layout_height="36dp"
             android:layout_below="@id/exercise_text"

@@ -7,11 +7,18 @@ import com.example.languide.tests.ReadingTest;
 import com.example.languide.tests.VocabularyTest;
 import com.example.languide.tests.WritingTest;
 import com.example.languide.ui.student.StudentMainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,9 +31,13 @@ public class WritingTestActivity extends AppCompatActivity {
     private TextView titleExercise;
     private TextView exerciseContent;
     private TextView instructionsExercise;
+    private Button finishTest;
 
     private String test;
     private String difficulty;
+
+    private int grade = 0;
+    private static int position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +47,7 @@ public class WritingTestActivity extends AppCompatActivity {
         titleExercise = findViewById(R.id.idTitleExercise);
         instructionsExercise = findViewById(R.id.test_instructions);
         exerciseContent = findViewById(R.id.exercise_text);
+        finishTest = findViewById(R.id.finishTest);
 
         Intent intent = getIntent();
         test = intent.getStringExtra("test_Name");
@@ -53,9 +65,26 @@ public class WritingTestActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<WritingTest> call, Response<WritingTest> response) {
                 WritingTest writingTest = response.body();
-                titleExercise.setText(writingTest.getData().getTitle());
-                instructionsExercise.setText(writingTest.getData().getInstructions());
+                titleExercise.setText(writingTest.getData().getExercise().getTitle());
+                instructionsExercise.setText(writingTest.getData().getExercise().getInstructions());
                 //Manage exerciseContent and clickable options
+
+
+                finishTest.setOnClickListener(v -> {
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DocumentReference documentReference = db.collection("ReadingTests").document(userID);
+
+                    Map<String, Object> test = new HashMap<>();
+                    test.put("title", writingTest.getData().getExercise().getTitle());
+                    test.put("grade", (grade*10.0)/WritingTestActivity.position);
+
+                    documentReference.set(test);
+
+                    Toast.makeText(WritingTestActivity.this, "Your grade is:\t" + (grade*10.0)/WritingTestActivity.position, Toast.LENGTH_LONG).show();
+                    WritingTestActivity.position = 0;
+                    startActivity(new Intent(WritingTestActivity.this, StudentMainActivity.class));
+                });
             }
 
             @Override

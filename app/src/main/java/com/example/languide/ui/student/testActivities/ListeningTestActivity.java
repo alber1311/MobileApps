@@ -6,6 +6,7 @@ import com.example.languide.api.TestService;
 import com.example.languide.tests.ListeningTest;
 import com.example.languide.ui.student.StudentMainActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.content.Intent;
@@ -39,6 +40,9 @@ public class ListeningTestActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
 
+    private int grade = 0;
+    private static int position = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +69,19 @@ public class ListeningTestActivity extends AppCompatActivity {
                 exerciseAudio = listeningTest.getData().getExercise().getAudio();
                 //Manage the audio
 
-
                 finishTest.setOnClickListener(v -> {
-                    //Save test
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DocumentReference documentReference = db.collection("ListeningTests").document(userID);
+
+                    Map<String, Object> test = new HashMap<>();
+                    test.put("title", listeningTest.getData().getExercise().getTitle());
+                    test.put("grade", (grade*10.0)/ListeningTestActivity.position);
+
+                    documentReference.set(test);
+
+                    Toast.makeText(ListeningTestActivity.this, "Your grade is:\t" + (grade*10.0)/ListeningTestActivity.position, Toast.LENGTH_LONG).show();
+                    ListeningTestActivity.position = 0;
                     startActivity(new Intent(ListeningTestActivity.this, StudentMainActivity.class));
                 });
             }

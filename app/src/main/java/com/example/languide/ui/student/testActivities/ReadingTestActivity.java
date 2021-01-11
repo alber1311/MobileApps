@@ -115,7 +115,7 @@ public class ReadingTestActivity extends AppCompatActivity {
 
                     documentReference.set(test);
 
-                    Toast.makeText(ReadingTestActivity.this, "Your grade is:\t" + (grade*10.0)/ReadingTestActivity.position, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReadingTestActivity.this, "Your grade is:\t" + (grade*10.0)/ReadingTestActivity.position, Toast.LENGTH_LONG).show();
                     ReadingTestActivity.position = 0;
                     startActivity(new Intent(ReadingTestActivity.this, StudentMainActivity.class));
                 });
