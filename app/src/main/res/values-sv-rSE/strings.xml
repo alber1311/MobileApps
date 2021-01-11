@@ -18,13 +18,31 @@
     <string name="Test">Testa</string>
     <string name="Profile">Profil</string>
     <string name="role_spinner">Roll</string>
+    <string-array name="Role">
+        <item>Studerande</item>
+        <item>Lärare</item>
+    </string-array>
     <string name="action_log_out">LOGGA UT</string>
     <string name="Difficulty">Välj svårighet</string>
+    <string-array name="difficulties">
+        <item>Lätt</item>
+        <item>Medel</item>
+        <item>Hård</item>
+    </string-array>
     <string name="ChooseTest">Välj test</string>
+    <string-array name="choose">
+        <item>Lyssnande</item>
+        <item>Ordförråd</item>
+        <item>Skrift</item>
+        <item>Tala</item>
+        <item>Läsning</item>
+    </string-array>
     <string name="Reading">Läsning</string>
     <string name="Finish">Avsluta</string>
     <string name="Listening">Lyssnande</string>
     <string name="Writing">Skrift</string>
     <string name="Speaking">Tala</string>
     <string name="Vocabulary">Ordförråd</string>
+    <string name="test_result">Resultat</string>
+    <string name="backToMain">Tillbaka till main</string>
 </resources>

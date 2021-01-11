@@ -41,8 +41,11 @@
             android:id="@+id/idListView2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/icons"
+            android:layout_toRightOf="@+id/icons"
             tools:layout_editor_absoluteX="82dp"
-            android:dividerHeight="2dp" />
+            android:dividerHeight="2dp"
+            android:entries="@array/difficulties"/>
 
         <LinearLayout
             android:id="@+id/icons"
@@ -56,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="14dp"
                 android:contentDescription="@string/iconReading"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_diff_one"
@@ -68,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="26dp"
                 android:contentDescription="@string/iconReading"
                 app:srcCompat="@drawable/ic_diff_two"
                 tools:srcCompat="@drawable/ic_diff_two"
@@ -80,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="23dp"
                 android:contentDescription="@string/iconReading"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_diff_three"

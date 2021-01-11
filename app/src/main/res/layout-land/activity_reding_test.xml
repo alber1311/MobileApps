@@ -6,4 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".ui.student.testActivities.ReadingTestActivity">
 
+    <RelativeLayout
+        android:id="@+id/Header"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/test_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/idTitle3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:fontFamily="cursive"
+            android:gravity="center_horizontal"
+            android:text="@string/Reading"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="36sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/idTitleExercise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTitle3"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/test_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTitleExercise"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/Header">
+
+        <TextView
+            android:id="@+id/exercise_text"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/profile_separator"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="vertical"
+            android:textAlignment="center"
+            android:verticalScrollbarPosition="right" />
+
+        <ListView
+            android:id="@+id/choices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_below="@id/exercise_text"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:scrollbars="vertical"/>
+
+        <Button
+            android:id="@+id/finishTest"
+            android:layout_width="64dp"
+            android:layout_height="36dp"
+            android:layout_below="@id/choices"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@drawable/round_borders"
+            android:textColor="@color/black"
+            android:text="@string/Finish"/>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

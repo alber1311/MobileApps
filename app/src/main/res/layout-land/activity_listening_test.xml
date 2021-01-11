@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.student.testActivities.WritingTestActivity">
+    tools:context=".ui.student.testActivities.ListeningTestActivity">
 
     <RelativeLayout
         android:id="@+id/Header"
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="cursive"
-            android:text="@string/Writing"
+            android:text="@string/Listening"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="36sp"
             android:textStyle="bold"

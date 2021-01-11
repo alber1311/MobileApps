@@ -32,7 +32,6 @@ import java.util.Objects;
 public class ShowPrevResultsActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
-    private String userID;
     private ListView listView;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -44,13 +43,38 @@ public class ShowPrevResultsActivity extends AppCompatActivity {
         listView = findViewById(R.id.idPastTests);
 
         db = FirebaseFirestore.getInstance();
-        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        ArrayList<String> tests = new ArrayList<>();
 
         DocumentReference documentReference = db.collection("ReadingTests").document(userID);
         documentReference.addSnapshotListener((value, error) -> {
-            ArrayList<String> tests = new ArrayList<>();
             assert value != null;
-            tests.add("Title:\t" + value.get("title") + ":\t" + value.get("grade") + "/10");
+            tests.add("Reading Tests:\nTitle:\t" + value.get("title") + ":\t" + value.get("grade") + "/10\n");
+        });
+
+        DocumentReference documentReference2 = db.collection("ListeningTests").document(userID);
+        documentReference2.addSnapshotListener((value, error) -> {
+            assert value != null;
+            tests.add("Listening Tests:\nTitle:\t" + value.get("title") + ":\t" + value.get("grade") + "/10\n");
+        });
+
+        DocumentReference documentReference3 = db.collection("WritingTests").document(userID);
+        documentReference3.addSnapshotListener((value, error) -> {
+            assert value != null;
+            tests.add("Writing Tests:\nTitle:\t" + value.get("title") + ":\t" + value.get("grade") + "/10\n");
+        });
+
+        DocumentReference documentReference4 = db.collection("SpeakingTests").document(userID);
+        documentReference4.addSnapshotListener((value, error) -> {
+            assert value != null;
+            tests.add("Speaking Tests:\nTitle:\t" + value.get("title") + ":\t" + value.get("grade") + "/10\n");
+        });
+
+        DocumentReference documentReference5 = db.collection("VocabularyTests").document(userID);
+        documentReference5.addSnapshotListener((value, error) -> {
+            assert value != null;
+            tests.add("Vocabulary Tests:\nTitle:\t" + value.get("title") + ":\t" + value.get("grade") + "/10");
             ArrayAdapter<String> adapter = new ArrayAdapter<>(ShowPrevResultsActivity.this, android.R.layout.simple_list_item_1, tests);
             listView.setAdapter(adapter);
         });
