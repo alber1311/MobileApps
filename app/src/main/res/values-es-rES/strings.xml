@@ -27,4 +27,6 @@
     <string name="Writing">Escritura</string>
     <string name="Speaking">Oral</string>
     <string name="Listening">Escucha</string>
+    <string name="test_result">Resultado</string>
+    <string name="backToMain">Volver a página principal</string>
 </resources>

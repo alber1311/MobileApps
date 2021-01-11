@@ -27,4 +27,6 @@
     <string name="Writing">Skrift</string>
     <string name="Speaking">Tala</string>
     <string name="Vocabulary">Ordförråd</string>
+    <string name="test_result">Resultat</string>
+    <string name="backToMain">Tillbaka till main</string>
 </resources>

@@ -6,6 +6,7 @@ import com.example.languide.*;
 import com.example.languide.api.TestService;
 import com.example.languide.tests.ReadingTest;
 import com.example.languide.ui.student.StudentMainActivity;
+import com.example.languide.ui.student.TestResultActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +41,9 @@ public class ReadingTestActivity extends AppCompatActivity {
     private Button finishTest;
     private ListView listView;
 
+    private String resolvedTest;
+    private String resolvedTest1;
+
     private int grade = 0;
     private static int position = 0;
 
@@ -72,6 +76,7 @@ public class ReadingTestActivity extends AppCompatActivity {
                 instructionsExercise.setText(readingTest.getData().getExercise().getInstructions());
                 exerciseContent.setText(readingTest.toString());
                 exerciseContent.setMovementMethod(new ScrollingMovementMethod());
+                resolvedTest = readingTest.toString();
                 //Manage exerciseContent and clickable options
                 position = 0;
                 final int[] j = new int[1];
@@ -80,8 +85,11 @@ public class ReadingTestActivity extends AppCompatActivity {
                 for(j[0] = 0 ; j[0] <  readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().size() ; j[0]++) {
                     choices.add(readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
                     choicesResult.add(readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getCorrect());
+                    if (readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getCorrect()){
+                        resolvedTest1 = resolvedTest.replaceFirst("_____", readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
+                    }
                 }
-                AtomicReference<ArrayAdapter<String>> adapter = new AtomicReference<>(new ArrayAdapter<String>(ReadingTestActivity.this, android.R.layout.simple_list_item_1, choices));
+                AtomicReference<ArrayAdapter<String>> adapter = new AtomicReference<>(new ArrayAdapter<>(ReadingTestActivity.this, android.R.layout.simple_list_item_1, choices));
                 listView.setAdapter(adapter.get());
                 listView.setOnItemClickListener((parent, view, position, id) -> {
 
@@ -98,12 +106,16 @@ public class ReadingTestActivity extends AppCompatActivity {
                         for(j[0] = 0 ; j[0] <  readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().size() ; j[0]++) {
                             choices.add(readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
                             choicesResult.add(readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getCorrect());
+                            if (readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getCorrect()){
+                                resolvedTest1 = resolvedTest1.replaceFirst("_____", readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
+                            }
                         }
                         adapter.set(new ArrayAdapter<String>(ReadingTestActivity.this, android.R.layout.simple_list_item_1, choices));
                         listView.setAdapter(adapter.get());
                     }
                 });
 
+                String finalResolvedTest = resolvedTest1;
                 finishTest.setOnClickListener(v -> {
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -114,10 +126,12 @@ public class ReadingTestActivity extends AppCompatActivity {
                     test.put("grade", (grade*10.0)/ReadingTestActivity.position);
 
                     documentReference.set(test);
-
+                    Intent intent = new Intent(ReadingTestActivity.this, TestResultActivity.class);
+                    intent.putExtra("exercise", finalResolvedTest);
+                    intent.putExtra("grade", (grade*10.0)/ReadingTestActivity.position);
                     Toast.makeText(ReadingTestActivity.this, "Your grade is:\t" + (grade*10.0)/ReadingTestActivity.position, Toast.LENGTH_LONG).show();
                     ReadingTestActivity.position = 0;
-                    startActivity(new Intent(ReadingTestActivity.this, StudentMainActivity.class));
+                    startActivity(intent);
                 });
             }
 

@@ -33,5 +33,7 @@
     <string name="Writing">Writing</string>
     <string name="Speaking">Speaking</string>
     <string name="Finish">FINISH</string>
+    <string name="test_result">Test result</string>
+    <string name="backToMain">Back to main</string>
 
 </resources>
