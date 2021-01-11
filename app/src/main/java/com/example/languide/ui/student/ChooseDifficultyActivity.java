@@ -25,41 +25,29 @@ public class ChooseDifficultyActivity extends AppCompatActivity {
         Intent intent = getIntent();
         testName = intent.getStringExtra("test_name");
 
-        ListView listView;
-        ArrayList<String> difficulty = new ArrayList<>();
-        difficulty.add("Easy");
-        difficulty.add("Medium");
-        difficulty.add("Hard");
-
-        listView = findViewById(R.id.idListView2);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.custom_list_item, difficulty);
-        listView.setAdapter(adapter);
+        ListView listView = findViewById(R.id.idListView2);
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            switch (testName) {
-                case "Listening":
-                    Intent intent1 = new Intent(ChooseDifficultyActivity.this, ListeningTestActivity.class);
-                    startActivity(intent1);
-                    break;
-                case "Vocabulary":
-                    Intent intent2 = new Intent(ChooseDifficultyActivity.this, VocabularyTestActivity.class);
-                    startActivity(intent2);
-                    break;
-                case "Writing":
-                    Intent intent3 = new Intent(ChooseDifficultyActivity.this, WritingTestActivity.class);
-                    startActivity(intent3);
-                    break;
-                case "Speaking":
-                    Intent intent4 = new Intent(ChooseDifficultyActivity.this, SpeakingTestActivity.class);
-                    startActivity(intent4);
-                    break;
-                case "Reading":
-                    Intent intent5 = new Intent(ChooseDifficultyActivity.this, ReadingTestActivity.class);
-                    startActivity(intent5);
-                    break;
+            if(testName.equals("Listening") || testName.equals("Escucha") || testName.equals("Lyssnande")) {
+                Intent intent1 = new Intent(ChooseDifficultyActivity.this, ListeningTestActivity.class);
+                startActivity(intent1);
+            }
+            else if(testName.equals("Vocabulary") || testName.equals("Vocabulario") || testName.equals("Ordförråd")) {
+                Intent intent2 = new Intent(ChooseDifficultyActivity.this, VocabularyTestActivity.class);
+                startActivity(intent2);
+            }
+            else if(testName.equals("Writing") || testName.equals("Escritura") || testName.equals("Skrift")) {
+                Intent intent3 = new Intent(ChooseDifficultyActivity.this, WritingTestActivity.class);
+                startActivity(intent3);
+            }
+            else if(testName.equals("Speaking") || testName.equals("Oral") || testName.equals("Tala")) {
+                Intent intent4 = new Intent(ChooseDifficultyActivity.this, SpeakingTestActivity.class);
+                startActivity(intent4);
+            }
+            else if(testName.equals("Reading") || testName.equals("Lectura") || testName.equals("Läsning")) {
+                Intent intent5 = new Intent(ChooseDifficultyActivity.this, ReadingTestActivity.class);
+                startActivity(intent5);
             }
         });
-
     }
 }

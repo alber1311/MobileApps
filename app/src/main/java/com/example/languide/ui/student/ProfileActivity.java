@@ -49,9 +49,9 @@ public class ProfileActivity  extends AppCompatActivity {
         DocumentReference documentReference = db.collection("users").document(userID);
         documentReference.addSnapshotListener(this, (value, error) -> {
             assert value != null;
-            String email = "Email:   " + value.getString("Email");
-            String name = "Name:   " + value.getString("Name");
-            String role = "Role:   " + value.getString("Role");
+            String email = ":   " + value.getString("Email");
+            String name = ":   " + value.getString("Name");
+            String role = ":   " + value.getString("Role");
             textEmail.setText(email);
             textName.setText(name);
             textRole.setText(role);
