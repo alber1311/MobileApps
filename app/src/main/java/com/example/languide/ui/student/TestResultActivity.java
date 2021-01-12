@@ -12,18 +12,14 @@ import android.widget.TextView;
 
 public class TestResultActivity extends AppCompatActivity {
 
-    private TextView textGrade;
-    private TextView exerciseText;
-    private Button backToMain;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_result);
 
-        textGrade = findViewById(R.id.testGrade);
-        exerciseText = findViewById(R.id.exercise_text);
-        backToMain = findViewById(R.id.next);
+        TextView textGrade = findViewById(R.id.testGrade);
+        TextView exerciseText = findViewById(R.id.exercise_text);
+        Button backToMain = findViewById(R.id.next);
 
         Intent intent = getIntent();
         double grade = intent.getExtras().getDouble("grade");
