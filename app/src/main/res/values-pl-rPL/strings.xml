@@ -29,4 +29,5 @@
     <string name="Finish">Zasób słów</string>
     <string name="test_result">Rezultat</string>
     <string name="backToMain">Powrót do głównego menu</string>
+    <string name="resetTests">Zresetuj testy</string>
 </resources>

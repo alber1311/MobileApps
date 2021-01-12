@@ -32,7 +32,5 @@ public class TestResultActivity extends AppCompatActivity {
         backToMain.setOnClickListener(v -> {
             startActivity(new Intent(TestResultActivity.this, StudentMainActivity.class));
         });
-
-
     }
 }
