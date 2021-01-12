@@ -5,6 +5,7 @@ import com.example.languide.*;
 import com.example.languide.api.TestService;
 import com.example.languide.tests.ListeningTest;
 import com.example.languide.ui.student.StudentMainActivity;
+import com.example.languide.ui.student.TestResultActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -80,9 +81,11 @@ public class ListeningTestActivity extends AppCompatActivity {
 
                     documentReference.set(test);
 
-                    Toast.makeText(ListeningTestActivity.this, "Your grade is:\t" + (grade*10.0)/ListeningTestActivity.position, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(ListeningTestActivity.this, TestResultActivity.class);
+                    intent.putExtra("grade", (grade*10.0)/ListeningTestActivity.position);
+                    intent.putExtra("exercise", listeningTest.toString());
                     ListeningTestActivity.position = 0;
-                    startActivity(new Intent(ListeningTestActivity.this, StudentMainActivity.class));
+                    startActivity(intent);
                 });
             }
 
