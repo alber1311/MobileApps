@@ -1,6 +1,7 @@
 package com.example.languide.ui.student.testActivities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.languide.*;
 import com.example.languide.api.TestService;
@@ -11,7 +12,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
@@ -45,6 +50,7 @@ public class ReadingTestActivity extends AppCompatActivity {
 
     private int grade = 0;
     private static int position = 0;
+    private static int testNumber = 0;
 
     private ReadingTest readingTest;
 
@@ -82,7 +88,7 @@ public class ReadingTestActivity extends AppCompatActivity {
                 ArrayList<String> choices = new ArrayList<>();
                 ArrayList<Boolean> choicesResult = new ArrayList<>();
                 for(j[0] = 0 ; j[0] <  readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().size() ; j[0]++) {
-                    choices.add(readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
+                    choices.add(j[0] + 1 + "\t" + readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
                     choicesResult.add(readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getCorrect());
                 }
                 AtomicReference<ArrayAdapter<String>> adapter = new AtomicReference<>(new ArrayAdapter<>(ReadingTestActivity.this, android.R.layout.simple_list_item_1, choices));
@@ -100,7 +106,7 @@ public class ReadingTestActivity extends AppCompatActivity {
                         choices.clear();
                         choicesResult.clear();
                         for(j[0] = 0 ; j[0] <  readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().size() ; j[0]++) {
-                            choices.add(readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
+                            choices.add(j[0] + 1 + "\t" + readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
                             choicesResult.add(readingTest.getData().getExercise().getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getCorrect());
                         }
                         adapter.set(new ArrayAdapter<String>(ReadingTestActivity.this, android.R.layout.simple_list_item_1, choices));
@@ -113,11 +119,21 @@ public class ReadingTestActivity extends AppCompatActivity {
                     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     DocumentReference documentReference = db.collection("ReadingTests").document(userID);
 
+                    documentReference.addSnapshotListener((value, error) -> {
+                        Map<String, Object> size = value.getData();
+                        ReadingTestActivity.testNumber = size.size();
+                    });
+
                     Map<String, Object> test = new HashMap<>();
                     test.put("title", readingTest.getData().getExercise().getTitle());
                     test.put("grade", (grade*10.0)/ReadingTestActivity.position);
 
-                    documentReference.set(test);
+                    Map<String, Object> testCollection = new HashMap<>();
+                    testCollection.put(String.valueOf(ReadingTestActivity.testNumber), test);
+
+                    documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
+
+                    //documentReference.set(testCollection);
                     Intent intent = new Intent(ReadingTestActivity.this, TestResultActivity.class);
                     intent.putExtra("exercise", finalResolvedTest);
                     intent.putExtra("grade", (grade*10.0)/ReadingTestActivity.position);
@@ -140,7 +156,7 @@ public class ReadingTestActivity extends AppCompatActivity {
         for (int i = 0; i < readingTest.getData().getExercise().getItems().size(); i++) {
             for(int j = 0 ; j <  readingTest.getData().getExercise().getItems().get(i).getChoices().size() ; j++) {
                 if (readingTest.getData().getExercise().getItems().get(i).getChoices().get(j).getCorrect()) {
-                    st = st.replaceFirst("_____", "[" + i + "]" + readingTest.getData().getExercise().getItems().get(i).getChoices().get(j).getText());
+                    st = st.replaceFirst("_____", " [[" + i + "] " + readingTest.getData().getExercise().getItems().get(i).getChoices().get(j).getText() + "]");
                 }
             }
         }

@@ -47,5 +47,6 @@
     <string name="Finish">FINISH</string>
     <string name="test_result">Test result</string>
     <string name="backToMain">Back to main</string>
+    <string name="resetTests">Reset tests</string>
 
 </resources>
