@@ -7,6 +7,7 @@ import com.example.languide.tests.ReadingTest;
 import com.example.languide.tests.VocabularyTest;
 import com.example.languide.tests.WritingTest;
 import com.example.languide.ui.student.StudentMainActivity;
+import com.example.languide.ui.student.TestResultActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -81,9 +82,11 @@ public class WritingTestActivity extends AppCompatActivity {
 
                     documentReference.set(test);
 
-                    Toast.makeText(WritingTestActivity.this, "Your grade is:\t" + (grade*10.0)/WritingTestActivity.position, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(WritingTestActivity.this, TestResultActivity.class);
+                    intent.putExtra("grade", (grade*10.0)/WritingTestActivity.position);
+                    intent.putExtra("exercise", writingTest.toString());
                     WritingTestActivity.position = 0;
-                    startActivity(new Intent(WritingTestActivity.this, StudentMainActivity.class));
+                    startActivity(intent);
                 });
             }
 
