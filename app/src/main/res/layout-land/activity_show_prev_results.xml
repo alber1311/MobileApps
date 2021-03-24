@@ -18,13 +18,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:hint="@string/See_past_results"
-            android:textColor="@android:color/holo_orange_dark"
-            android:textColorHint="@android:color/holo_orange_dark"
+            android:textColor="@android:color/holo_green_dark"
+            android:textColorHint="@android:color/holo_green_dark"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:fontFamily="cursive"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
     </RelativeLayout>

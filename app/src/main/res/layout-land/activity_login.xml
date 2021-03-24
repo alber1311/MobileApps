@@ -56,13 +56,13 @@
         android:enabled="true"
         android:text="@string/action_sign_in"
         android:textColor="@color/black"
-        app:backgroundTint="@android:color/holo_orange_dark"
+        app:backgroundTint="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.2"
-        app:rippleColor="@android:color/holo_orange_dark" />
+        app:rippleColor="@android:color/holo_green_dark" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -91,8 +91,8 @@
         android:layout_marginRight="24dp"
         android:fontFamily="cursive"
         android:text="@string/Title"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="36sp"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="46sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

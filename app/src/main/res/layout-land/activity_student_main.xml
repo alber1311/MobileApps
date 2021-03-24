@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.student.StudentMainActivity"
-    style="?android:attr/buttonBarStyle">
+    style="?android:attr/buttonBarStyle"
+    android:background="@android:color/background_light">
 
     <TextView
         android:id="@+id/idTitle3"
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
         android:text="@string/Title"
-        android:textColor="@android:color/holo_orange_dark"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonStart"
@@ -62,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -75,9 +76,9 @@
             android:enabled="false"
             android:fontFamily="cursive"
             android:text="@string/Test"
-            android:textColor="@android:color/holo_orange_light"
+            android:textColor="@android:color/holo_green_light"
             android:textSize="42sp"
-            app:backgroundTint="@android:color/holo_orange_dark"
+            app:backgroundTint="@android:color/holo_green_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
