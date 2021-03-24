@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.student.ShowPrevResultsActivity">
+    tools:context=".ui.student.ShowPrevResultsActivity"
+    android:background="@android:color/background_light">
 
     <RelativeLayout
         android:id="@+id/Separator"
@@ -18,13 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:hint="@string/See_past_results"
-            android:textColor="@android:color/holo_orange_dark"
-            android:textColorHint="@android:color/holo_orange_dark"
+            android:textColor="@android:color/holo_green_dark"
+            android:textColorHint="@android:color/holo_green_dark"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:fontFamily="cursive"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
     </RelativeLayout>
@@ -54,7 +54,7 @@
             android:textAlignment="center"
             android:gravity="center_horizontal"
             android:layout_centerInParent="true"
-            android:textColor="@android:color/holo_orange_dark"
+            android:textColor="@android:color/holo_green_dark"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
     </RelativeLayout>

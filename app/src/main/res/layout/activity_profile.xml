@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -21,11 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:enabled="true"
-            android:fontFamily="cursive"
             android:text="@string/Test"
             android:textColor="@color/white"
             android:textSize="42sp"
-            app:backgroundTint="@android:color/holo_orange_dark"
+            app:backgroundTint="@android:color/holo_green_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -37,11 +36,10 @@
             android:layout_weight="1"
             android:baselineAligned="false"
             android:enabled="false"
-            android:fontFamily="cursive"
             android:text="@string/Profile"
-            android:textColor="@android:color/holo_orange_light"
+            android:textColor="@android:color/darker_gray"
             android:textSize="42sp"
-            app:backgroundTint="@android:color/holo_orange_dark"
+            app:backgroundTint="@android:color/holo_green_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </LinearLayout>
@@ -58,8 +56,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="cursive"
             android:text="@string/Title"
-            android:textColor="@android:color/holo_orange_dark"
-            android:textSize="36sp"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="46sp"
             android:textStyle="bold"
             android:layout_marginTop="124dp"
             android:textAlignment="center"
@@ -96,7 +94,6 @@
             android:textSize="22sp"
             android:hint="@string/prompt_email"
             app:layout_constraintHorizontal_bias="1.0"
-            android:fontFamily="cursive"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginStart="@dimen/activity_horizontal_margin" />
 
@@ -110,7 +107,6 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:textSize="22sp"
             app:layout_constraintHorizontal_bias="1.0"
-            android:fontFamily="cursive"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginEnd="@dimen/activity_horizontal_margin" />
 
@@ -126,7 +122,6 @@
             android:hint="@string/prompt_name"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_below="@id/idEmailHint"
-            android:fontFamily="cursive"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginStart="@dimen/activity_horizontal_margin" />
 
@@ -141,7 +136,6 @@
             android:textSize="22sp"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_below="@id/idEmailProfile"
-            android:fontFamily="cursive"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginEnd="@dimen/activity_horizontal_margin" />
 
@@ -157,7 +151,6 @@
             android:hint="@string/role_spinner"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_below="@id/idNameHint"
-            android:fontFamily="cursive"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginStart="@dimen/activity_horizontal_margin" />
 
@@ -172,7 +165,6 @@
             android:textSize="22sp"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_below="@id/idNameProfile"
-            android:fontFamily="cursive"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginEnd="@dimen/activity_horizontal_margin" />
 

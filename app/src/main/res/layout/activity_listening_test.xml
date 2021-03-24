@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.student.testActivities.ListeningTestActivity">
+    tools:context=".ui.student.testActivities.ListeningTestActivity"
+    android:background="@android:color/background_light">
 
     <RelativeLayout
         android:id="@+id/Header"
@@ -16,9 +17,8 @@
             android:id="@+id/idTitle3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="cursive"
             android:text="@string/Listening"
-            android:textColor="@android:color/holo_orange_dark"
+            android:textColor="@android:color/holo_green_dark"
             android:textSize="36sp"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -34,7 +34,7 @@
             android:gravity="center_horizontal"
             android:text="@string/Title"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@android:color/primary_text_dark"
             android:textSize="20sp" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idTitleExercise"
-            android:textColor="@color/white"
+            android:textColor="@android:color/primary_text_dark"
             android:text="Instructions of the test will be replaced with the actual"
             android:textAlignment="center"
             android:gravity="center_horizontal"

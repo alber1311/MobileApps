@@ -58,22 +58,24 @@ public class ShowPrevResultsActivity extends AppCompatActivity {
         DocumentReference documentReference = db.collection("ReadingTests").document(userID);
         documentReference.addSnapshotListener((value, error) -> {
             assert value != null;
+            try {
+                Set<String> keys = value.getData().keySet();
 
-            Set<String> keys = value.getData().keySet();
-
-            ArrayList<String> entry = new ArrayList<>();
-            for (String key : keys) {
-                Map<String, Object> m = (Map<String, Object>) value.getData().get(key);
-                entry.add("Title:\t" + m.get("title") + "\nGrade: " + m.get("grade"));
-                sum += Double.parseDouble(m.get("grade").toString());
-                number++;
+                ArrayList<String> entry = new ArrayList<>();
+                for (String key : keys) {
+                    Map<String, Object> m = (Map<String, Object>) value.getData().get(key);
+                    entry.add("Title:\t" + m.get("title") + "\nGrade: " + m.get("grade"));
+                    sum += Double.parseDouble(m.get("grade").toString());
+                    number++;
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(ShowPrevResultsActivity.this, android.R.layout.simple_list_item_1, entry);
+                listView.setAdapter(adapter);
+                double totalResult = sum/number;
+                String totalAverage = "Average:\t" + String.format("%.2f", totalResult);
+                average.setText(totalAverage);
+            } catch (Exception e) {
+                average.setText("No tests done yet!");
             }
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(ShowPrevResultsActivity.this, android.R.layout.simple_list_item_1, entry);
-            listView.setAdapter(adapter);
-            double totalResult = sum/number;
-            String totalAverage = "Average:\t" + String.format("%.2f", totalResult);
-            average.setText(totalAverage);
-
         });
 
         /*DocumentReference documentReference2 = db.collection("ListeningTests").document(userID);

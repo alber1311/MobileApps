@@ -15,7 +15,7 @@
     <string name="Title" translatable="false">LanGuide</string>
     <string name="action_register">I haven´t got an account. REGISTER</string>
     <string name="Start_Test">Start Test</string>
-    <string name="See_past_results">Past tests</string>
+    <string name="See_past_results">See Statistics</string>
     <string name="Test">Test</string>
     <string name="Profile">Profile</string>
     <string name="role_spinner">Role</string>
