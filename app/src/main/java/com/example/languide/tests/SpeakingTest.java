@@ -49,10 +49,10 @@ public class SpeakingTest{
             private String title;
             @SerializedName("exercise")
             @Expose
-            private com.example.languide.tests.ReadingTest.Data.Exercise exercise;
+            private com.example.languide.tests.SpeakingTest.Data.Exercise exercise;
             @SerializedName("exercise_instances")
             @Expose
-            private List<com.example.languide.tests.ReadingTest.Data.ExerciseInstance> exerciseInstances = null;
+            private List<com.example.languide.tests.SpeakingTest.Data.ExerciseInstance> exerciseInstances = null;
 
             public String getTitle() {
                 return title;
@@ -62,19 +62,19 @@ public class SpeakingTest{
                 this.title = title;
             }
 
-            public com.example.languide.tests.ReadingTest.Data.Exercise getExercise() {
+            public com.example.languide.tests.SpeakingTest.Data.Exercise getExercise() {
                 return exercise;
             }
 
-            public void setExercise(com.example.languide.tests.ReadingTest.Data.Exercise exercise) {
+            public void setExercise(com.example.languide.tests.SpeakingTest.Data.Exercise exercise) {
                 this.exercise = exercise;
             }
 
-            public List<com.example.languide.tests.ReadingTest.Data.ExerciseInstance> getExerciseInstances() {
+            public List<com.example.languide.tests.SpeakingTest.Data.ExerciseInstance> getExerciseInstances() {
                 return exerciseInstances;
             }
 
-            public void setExerciseInstances(List<com.example.languide.tests.ReadingTest.Data.ExerciseInstance> exerciseInstances) {
+            public void setExerciseInstances(List<com.example.languide.tests.SpeakingTest.Data.ExerciseInstance> exerciseInstances) {
                 this.exerciseInstances = exerciseInstances;
             }
 
@@ -106,7 +106,7 @@ public class SpeakingTest{
                 private Boolean sectionsOnSamePage;
                 @SerializedName("items")
                 @Expose
-                private List<com.example.languide.tests.ReadingTest.Data.Exercise.Item> items = null;
+                private List<com.example.languide.tests.SpeakingTest.Data.Exercise.Item> items = null;
 
                 public String getTitle() {
                     return title;
@@ -156,11 +156,11 @@ public class SpeakingTest{
                     this.sectionsOnSamePage = sectionsOnSamePage;
                 }
 
-                public List<com.example.languide.tests.ReadingTest.Data.Exercise.Item> getItems() {
+                public List<com.example.languide.tests.SpeakingTest.Data.Exercise.Item> getItems() {
                     return items;
                 }
 
-                public void setItems(List<com.example.languide.tests.ReadingTest.Data.Exercise.Item> items) {
+                public void setItems(List<com.example.languide.tests.SpeakingTest.Data.Exercise.Item> items) {
                     this.items = items;
                 }
 
@@ -177,7 +177,7 @@ public class SpeakingTest{
                     private String text1;
                     @SerializedName("choices")
                     @Expose
-                    private List<com.example.languide.tests.ReadingTest.Data.Exercise.Item.Choice> choices = null;
+                    private List<com.example.languide.tests.SpeakingTest.Data.Exercise.Item.Choice> choices = null;
                     @SerializedName("text2")
                     @Expose
                     private String text2;
@@ -190,11 +190,11 @@ public class SpeakingTest{
                         this.text1 = text1;
                     }
 
-                    public List<com.example.languide.tests.ReadingTest.Data.Exercise.Item.Choice> getChoices() {
+                    public List<com.example.languide.tests.SpeakingTest.Data.Exercise.Item.Choice> getChoices() {
                         return choices;
                     }
 
-                    public void setChoices(List<com.example.languide.tests.ReadingTest.Data.Exercise.Item.Choice> choices) {
+                    public void setChoices(List<com.example.languide.tests.SpeakingTest.Data.Exercise.Item.Choice> choices) {
                         this.choices = choices;
                     }
 

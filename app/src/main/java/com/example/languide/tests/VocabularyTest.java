@@ -49,10 +49,7 @@ public class VocabularyTest{
         private String title;
         @SerializedName("exercise")
         @Expose
-        private ReadingTest.Data.Exercise exercise;
-        @SerializedName("exercise_instances")
-        @Expose
-        private List<ReadingTest.Data.ExerciseInstance> exerciseInstances = null;
+        private VocabularyTest.Data.Exercise exercise;
 
         public String getTitle() {
             return title;
@@ -62,21 +59,14 @@ public class VocabularyTest{
             this.title = title;
         }
 
-        public ReadingTest.Data.Exercise getExercise() {
+        public VocabularyTest.Data.Exercise getExercise() {
             return exercise;
         }
 
-        public void setExercise(ReadingTest.Data.Exercise exercise) {
+        public void setExercise(VocabularyTest.Data.Exercise exercise) {
             this.exercise = exercise;
         }
 
-        public List<ReadingTest.Data.ExerciseInstance> getExerciseInstances() {
-            return exerciseInstances;
-        }
-
-        public void setExerciseInstances(List<ReadingTest.Data.ExerciseInstance> exerciseInstances) {
-            this.exerciseInstances = exerciseInstances;
-        }
 
         @NonNull
         @Override
@@ -106,7 +96,7 @@ public class VocabularyTest{
             private Boolean sectionsOnSamePage;
             @SerializedName("items")
             @Expose
-            private List<ReadingTest.Data.Exercise.Item> items = null;
+            private List<VocabularyTest.Data.Exercise.Item> items = null;
 
             public String getTitle() {
                 return title;
@@ -156,11 +146,11 @@ public class VocabularyTest{
                 this.sectionsOnSamePage = sectionsOnSamePage;
             }
 
-            public List<ReadingTest.Data.Exercise.Item> getItems() {
+            public List<VocabularyTest.Data.Exercise.Item> getItems() {
                 return items;
             }
 
-            public void setItems(List<ReadingTest.Data.Exercise.Item> items) {
+            public void setItems(List<VocabularyTest.Data.Exercise.Item> items) {
                 this.items = items;
             }
 
@@ -177,7 +167,7 @@ public class VocabularyTest{
                 private String text1;
                 @SerializedName("choices")
                 @Expose
-                private List<ReadingTest.Data.Exercise.Item.Choice> choices = null;
+                private List<VocabularyTest.Data.Exercise.Item.Choice> choices = null;
                 @SerializedName("text2")
                 @Expose
                 private String text2;
@@ -190,11 +180,11 @@ public class VocabularyTest{
                     this.text1 = text1;
                 }
 
-                public List<ReadingTest.Data.Exercise.Item.Choice> getChoices() {
+                public List<VocabularyTest.Data.Exercise.Item.Choice> getChoices() {
                     return choices;
                 }
 
-                public void setChoices(List<ReadingTest.Data.Exercise.Item.Choice> choices) {
+                public void setChoices(List<VocabularyTest.Data.Exercise.Item.Choice> choices) {
                     this.choices = choices;
                 }
 
@@ -240,77 +230,6 @@ public class VocabularyTest{
                 }
 
             }
-        }
-
-        public class ExerciseInstance {
-
-            @SerializedName("status")
-            @Expose
-            private String status;
-            @SerializedName("_id")
-            @Expose
-            private String id;
-            @SerializedName("exercise")
-            @Expose
-            private String exercise;
-            @SerializedName("score")
-            @Expose
-            private String score;
-            @SerializedName("date_of_resolution")
-            @Expose
-            private String dateOfResolution;
-            @SerializedName("__v")
-            @Expose
-            private Integer v;
-
-            public String getStatus() {
-                return status;
-            }
-
-            public void setStatus(String status) {
-                this.status = status;
-            }
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getExercise() {
-                return exercise;
-            }
-
-            public void setExercise(String exercise) {
-                this.exercise = exercise;
-            }
-
-            public String getScore() {
-                return score;
-            }
-
-            public void setScore(String score) {
-                this.score = score;
-            }
-
-            public String getDateOfResolution() {
-                return dateOfResolution;
-            }
-
-            public void setDateOfResolution(String dateOfResolution) {
-                this.dateOfResolution = dateOfResolution;
-            }
-
-            public Integer getV() {
-                return v;
-            }
-
-            public void setV(Integer v) {
-                this.v = v;
-            }
-
         }
     }
 }

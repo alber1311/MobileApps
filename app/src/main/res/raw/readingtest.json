@@ -1,0 +1,204 @@
+{
+  "title": "Fill in the blanks with suitable words",
+  "instructions": "Choose the word you think fits in each space.",
+  "items": [
+    {
+      "text1": "I am sorry",
+      "choice": [
+        {
+          "text": "from",
+          "correct": false
+        },
+        {
+          "text": "with",
+          "correct": false
+        },
+        {
+          "text": "for",
+          "correct": true
+        },
+        {
+          "text": "at",
+          "correct": false
+        }
+      ],
+      "text2": "the mistake"
+    },
+    {
+      "text1": "He",
+      "choice": [
+        {
+          "text": "insured",
+          "correct": false
+        },
+        {
+          "text": "ensured",
+          "correct": false
+        },
+        {
+          "text": "assumed",
+          "correct": false
+        },
+        {
+          "text": "assured",
+          "correct": true
+        }
+      ],
+      "text2": "her that she would pass."
+    },
+    {
+      "text1": "Your father",
+      "choice": [
+        {
+          "text": "needn´t",
+          "correct": true
+        },
+        {
+          "text": "none",
+          "correct": false
+        },
+        {
+          "text": "can´t",
+          "correct": false
+        },
+        {
+          "text": "doesn´t",
+          "correct": false
+        }
+      ],
+      "text2": "worry. I´m a very careful driver."
+    },
+    {
+      "text1": "The",
+      "choice": [
+        {
+          "text": "cite",
+          "correct": false
+        },
+        {
+          "text": "slight",
+          "correct": false
+        },
+        {
+          "text": "sight",
+          "correct": false
+        },
+        {
+          "text": "site",
+          "correct": true
+        }
+      ],
+      "text2": "chosen for construction of the building is in the heart of the city."
+    },
+    {
+      "text1": "",
+      "choice": [
+        {
+          "text": "Although",
+          "correct": false
+        },
+        {
+          "text": "However",
+          "correct": false
+        },
+        {
+          "text": "Because",
+          "correct": true
+        },
+        {
+          "text": "Despite",
+          "correct": false
+        }
+      ],
+      "text2": "pollution control measures are expensive, many industries hesitate to adopt them."
+    },
+    {
+      "text1": "It is not",
+      "choice": [
+        {
+          "text": "healthy",
+          "correct": true
+        },
+        {
+          "text": "easy",
+          "correct": false
+        },
+        {
+          "text": "possible",
+          "correct": false
+        },
+        {
+          "text": "common",
+          "correct": false
+        }
+      ],
+      "text2": "for a man to be confined to the pursuit of wealth."
+    },
+    {
+      "text1": "",
+      "choice": [
+        {
+          "text": "In spite of",
+          "correct": true
+        },
+        {
+          "text": "In case of",
+          "correct": false
+        },
+        {
+          "text": "On account of",
+          "correct": false
+        },
+        {
+          "text": "In the event of",
+          "correct": false
+        }
+      ],
+      "text2": "his being innocent off the crime, the judge sentenced him to one year imprisonment."
+    },
+    {
+      "text1": "It is a story of two men and a batch of",
+      "choice": [
+        {
+          "text": "deceased",
+          "correct": false
+        },
+        {
+          "text": "diseaded",
+          "correct": false
+        },
+        {
+          "text": "decrepit",
+          "correct": true
+        },
+        {
+          "text": "defeated",
+          "correct": false
+        }
+      ],
+      "text2": "armoured cars."
+    },
+    {
+      "text1": "Although there is",
+      "choice": [
+        {
+          "text": "bitter",
+          "correct": false
+        },
+        {
+          "text": "meagre",
+          "correct": false
+        },
+        {
+          "text": "continuous",
+          "correct": false
+        },
+        {
+          "text": "sporadic",
+          "correct": true
+        }
+      ],
+      "text2": "gunfire, there is no stiff resistance to the revolutionary army."
+    }
+  ]
+}
