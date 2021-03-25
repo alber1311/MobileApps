@@ -62,6 +62,7 @@ public class ReadingTestActivity extends AppCompatActivity {
     private static int testNumber = 0;
 
     private ReadingTest readingTest;
+    private String st;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,6 +173,8 @@ public class ReadingTestActivity extends AppCompatActivity {
         ReadingTest readingTest = gson.fromJson(exercise, ReadingTest.class);
         Log.println(Log.INFO, "ReadingTestParsed", readingTest.toString());
 
+        st = readingTest.toString();
+
         titleExercise.setText(readingTest.getTitle());
         instructionsExercise.setText(readingTest.getInstructions());
         exerciseContent.setText(readingTest.toString());
@@ -183,12 +186,15 @@ public class ReadingTestActivity extends AppCompatActivity {
         ArrayList<String> choices = new ArrayList<>();
         ArrayList<Boolean> choicesResult = new ArrayList<>();
         for(j[0] = 0 ; j[0] <  readingTest.getItems().get(ReadingTestActivity.position).getChoices().size() ; j[0]++) {
-            choices.add(j[0] + 1 + "\t" + readingTest.getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
+            choices.add(readingTest.getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
             choicesResult.add(readingTest.getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getCorrect());
         }
         AtomicReference<ArrayAdapter<String>> adapter = new AtomicReference<>(new ArrayAdapter<>(ReadingTestActivity.this, android.R.layout.simple_list_item_1, choices));
         listView.setAdapter(adapter.get());
         listView.setOnItemClickListener((parent, view, position, id) -> {
+
+            st = st.replaceFirst("_____", " " + choices.get(position) + " ");
+            exerciseContent.setText(st);
 
             if (choicesResult.get(position).equals(true)){
                 grade++;
@@ -201,14 +207,14 @@ public class ReadingTestActivity extends AppCompatActivity {
                 choices.clear();
                 choicesResult.clear();
                 for(j[0] = 0 ; j[0] <  readingTest.getItems().get(ReadingTestActivity.position).getChoices().size() ; j[0]++) {
-                    choices.add(j[0] + 1 + "\t" + readingTest.getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
+                    choices.add(readingTest.getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getText());
                     choicesResult.add(readingTest.getItems().get(ReadingTestActivity.position).getChoices().get(j[0]).getCorrect());
                 }
                 adapter.set(new ArrayAdapter<String>(ReadingTestActivity.this, android.R.layout.simple_list_item_1, choices));
                 listView.setAdapter(adapter.get());
             }
         });
-        /*String finalResolvedTest = loadResolvedTest(readingTest);
+        String finalResolvedTest = loadResolvedTest(readingTest);
         finishTest.setOnClickListener(v -> {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -234,7 +240,7 @@ public class ReadingTestActivity extends AppCompatActivity {
             intent.putExtra("grade", (grade*10.0)/ReadingTestActivity.position);
             ReadingTestActivity.position = 0;
             startActivity(intent);
-        });*/
+        });
 
     }
 
@@ -256,14 +262,14 @@ public class ReadingTestActivity extends AppCompatActivity {
     }
 
     public String loadResolvedTest(ReadingTest test){
-        String st = test.toString();
-        for (int i = 0; i < readingTest.getItems().size(); i++) {
-            for(int j = 0 ; j <  readingTest.getItems().get(i).getChoices().size() ; j++) {
-                if (readingTest.getItems().get(i).getChoices().get(j).getCorrect()) {
-                    st = st.replaceFirst("_____", " [[" + i + "] " + readingTest.getItems().get(i).getChoices().get(j).getText() + "]");
+        String str = test.toString();
+        for (int i = 0; i < test.getItems().size(); i++) {
+            for(int j = 0 ; j <  test.getItems().get(i).getChoices().size() ; j++) {
+                if (test.getItems().get(i).getChoices().get(j).getCorrect()) {
+                    str = str.replaceFirst("_____", " " + test.getItems().get(i).getChoices().get(j).getText() + " ");
                 }
             }
         }
-        return st;
+        return str;
     }
 }
