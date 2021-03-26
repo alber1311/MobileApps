@@ -30,4 +30,5 @@
     <string name="test_result">Rezultat</string>
     <string name="backToMain">Powrót do głównego menu</string>
     <string name="resetTests">Zresetuj testy</string>
+    <string name="playAudio">GRAC!</string>
 </resources>

@@ -46,4 +46,5 @@
     <string name="test_result">Resultado</string>
     <string name="backToMain">Volver a página principal</string>
     <string name="resetTests">Resetear tests</string>
+    <string name="playAudio">PLAY!</string>
 </resources>

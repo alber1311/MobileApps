@@ -46,4 +46,5 @@
     <string name="test_result">Resultat</string>
     <string name="backToMain">Tillbaka till main</string>
     <string name="resetTests">Återställ tester</string>
+    <string name="playAudio">SPELA!</string>
 </resources>

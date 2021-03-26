@@ -48,5 +48,7 @@
     <string name="test_result">Test result</string>
     <string name="backToMain">Back to main</string>
     <string name="resetTests">Reset tests</string>
+    <string name="playAudio">PLAY!</string>
+    <string name="next">Next</string>
 
 </resources>
