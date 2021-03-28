@@ -46,4 +46,10 @@
     <string name="test_result">Resultat</string>
     <string name="backToMain">Tillbaka till main</string>
     <string name="resetTests">Återställ tester</string>
+    <string name="playAudio">SPELA!</string>
+    <string name="solutions">LÖSNINGAR</string>
+    <string name="next">Next</string>
+    <string name="reading_tests">Läsning</string>
+    <string name="listening_tests">Lyssnande</string>
+    <string name="vocabulary_tests">Ordförråd</string>
 </resources>

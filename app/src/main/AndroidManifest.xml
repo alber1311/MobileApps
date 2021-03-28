@@ -14,6 +14,11 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".ui.student.showPrevTests.ShowSpeakingTestActivity"></activity>
+        <activity android:name=".ui.student.showPrevTests.ShowWritingTestActivity" />
+        <activity android:name=".ui.student.showPrevTests.ShowVocabularyTestActivity" />
+        <activity android:name=".ui.student.showPrevTests.ShowListeningTestActivity" />
+        <activity android:name=".ui.student.showPrevTests.ShowReadingTestsActivity" />
         <activity android:name=".ui.student.TestResultActivity" />
         <activity android:name=".ui.student.testActivities.WritingTestActivity" />
         <activity android:name=".ui.student.testActivities.SpeakingTestActivity" />

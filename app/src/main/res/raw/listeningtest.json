@@ -1,0 +1,35 @@
+{
+  "title": "Fill the gaps with suitable words",
+  "instructions": "Click the play button to listen to the audio and then answer the questions.",
+  "audio": "listeningaudio.mp3",
+  "items": [
+    {
+      "text": "What type of food does the speaker not recommend?",
+      "gap": "Sugar"
+    },
+    {
+      "text": "When is it easier to study?",
+      "gap": "Relaxed"
+    },
+    {
+      "text": "What to do if you start feeling anxious?",
+      "gap": "Take a break"
+    },
+    {
+      "text": "Should you try to learn everything?",
+      "gap": "No, just the important"
+    },
+    {
+      "text": "It might be boring, but _______ helps you to remember.",
+      "gap": "repetition"
+    },
+    {
+      "text": "Should you use past exams to study?",
+      "gap": "yes"
+    },
+    {
+      "text": "Should you play with your mobile phone in your study breaks?",
+      "gap": "no"
+    }
+  ]
+}

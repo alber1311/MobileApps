@@ -18,12 +18,11 @@
             android:id="@+id/idTitle3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:fontFamily="cursive"
+            android:layout_marginTop="@dimen/profile_separator_landscape"
             android:gravity="center_horizontal"
             android:text="@string/test_result"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_orange_dark"
+            android:textColor="@android:color/holo_green_dark"
             android:textSize="36sp"
             android:textStyle="bold"/>
     </RelativeLayout>
@@ -33,42 +32,54 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/Header">
 
-    <TextView
-        android:id="@+id/exercise_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:gravity="center_horizontal"
-        android:overScrollMode="ifContentScrolls"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbarStyle="outsideInset"
-        android:scrollbars="vertical"
-        android:textAlignment="center"
-        android:verticalScrollbarPosition="right" />
+        <TextView
+            android:id="@+id/solution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text="@string/solutions"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/exercise_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="vertical"
+            android:textAlignment="center"
+            android:verticalScrollbarPosition="right"
+            android:layout_below="@id/solution"/>
 
-    <TextView
-        android:id="@+id/testGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:gravity="center_horizontal"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_below="@id/exercise_text"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+        <TextView
+            android:id="@+id/testGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_below="@id/exercise_text"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
 
-    <Button
-        android:id="@+id/next"
-        android:text="@string/backToMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/testGrade"
-        android:layout_centerInParent="true"
-        android:background="@drawable/round_borders"
-        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+        <Button
+            android:id="@+id/next"
+            android:text="@string/backToMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/testGrade"
+            android:layout_centerInParent="true"
+            android:background="@drawable/round_borders"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
     </RelativeLayout>
 

@@ -48,5 +48,11 @@
     <string name="test_result">Test result</string>
     <string name="backToMain">Back to main</string>
     <string name="resetTests">Reset tests</string>
+    <string name="playAudio">PLAY!</string>
+    <string name="next">Next</string>
+    <string name="reading_tests">Reading Tests</string>
+    <string name="listening_tests">Listening Tests</string>
+    <string name="solutions">SOLUTIONS</string>
+    <string name="vocabulary_tests">Vocabulary Tests</string>
 
 </resources>

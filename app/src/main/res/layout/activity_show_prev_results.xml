@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.student.ShowPrevResultsActivity"
-    android:background="@android:color/background_light">
+    tools:context=".ui.student.ShowPrevResultsActivity">
 
     <RelativeLayout
         android:id="@+id/Separator"
@@ -44,18 +43,8 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:textAlignment="center"
-            android:gravity="center_horizontal"/>
-
-        <TextView
-            android:id="@+id/average"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/idPastTests"
-            android:textAlignment="center"
             android:gravity="center_horizontal"
-            android:layout_centerInParent="true"
-            android:textColor="@android:color/holo_green_dark"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+            android:entries="@array/choose"/>
 
     </RelativeLayout>
 

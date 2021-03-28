@@ -1,0 +1,182 @@
+{
+  "title": "Fill in the blanks with suitable words",
+  "instructions": "Choose the word you think fits in each space.",
+  "items": [
+    {
+      "text1": "At the moment I´m reading a",
+      "choice": [
+        {
+          "text": "fiction",
+          "correct": "false"
+        },
+        {
+          "text": "literature",
+          "correct": "false"
+        },
+        {
+          "text": "writing",
+          "correct": "false"
+        },
+        {
+          "text": "novel",
+          "correct": "true"
+        }
+      ],
+      "text2": "about a family who escaped from Germany during the World War II."
+    },
+    {
+      "text1": "Who",
+      "choice": [
+        {
+          "text": "learned",
+          "correct": "false"
+        },
+        {
+          "text": "explained",
+          "correct": "false"
+        },
+        {
+          "text": "made",
+          "correct": "false"
+        },
+        {
+          "text": "taught",
+          "correct": "true"
+        }
+      ],
+      "text2": "you how to play so well?"
+    },
+    {
+      "text1": "We",
+      "choice": [
+        {
+          "text": "enjoyed",
+          "correct": "true"
+        },
+        {
+          "text": "pleased",
+          "correct": "false"
+        },
+        {
+          "text": "entertained",
+          "correct": "false"
+        },
+        {
+          "text": "adored",
+          "correct": "false"
+        }
+      ],
+      "text2": "ourselves at the party and had a lot of fun."
+    },
+    {
+      "text1": "This car is one of the most",
+      "choice": [
+        {
+          "text": "reasonable",
+          "correct": "false"
+        },
+        {
+          "text": "economic",
+          "correct": "true"
+        },
+        {
+          "text": "capable",
+          "correct": "false"
+        },
+        {
+          "text": "economical",
+          "correct": "false"
+        }
+      ],
+      "text2": "ones that the company has to offer."
+    },
+    {
+      "text1": "I felt so",
+      "choice": [
+        {
+          "text": "dissapointed",
+          "correct": "true"
+        },
+        {
+          "text": "dissatisfied",
+          "correct": "false"
+        },
+        {
+          "text": "failed",
+          "correct": "false"
+        },
+        {
+          "text": "disillusioned",
+          "correct": "false"
+        }
+      ],
+      "text2": "when my parents didn't come to pick me up."
+    },
+    {
+      "text1": "Carbon emissions have",
+      "choice": [
+        {
+          "text": "upset",
+          "correct": "false"
+        },
+        {
+          "text": "effected",
+          "correct": "false"
+        },
+        {
+          "text": "disturbed",
+          "correct": "false"
+        },
+        {
+          "text": "affected",
+          "correct": "true"
+        }
+      ],
+      "text2": "pollution control measures are expensive, many industries hesitate to adopt them."
+    },
+    {
+      "text1": "Most residents are not",
+      "choice": [
+        {
+          "text": "known",
+          "correct": "false"
+        },
+        {
+          "text": "aware",
+          "correct": "true"
+        },
+        {
+          "text": "alert",
+          "correct": "false"
+        },
+        {
+          "text": "considered",
+          "correct": "false"
+        }
+      ],
+      "text2": "that wasting water causes environmental problems."
+    },
+    {
+      "text1": "In the end it",
+      "choice": [
+        {
+          "text": "showed",
+          "correct": "true"
+        },
+        {
+          "text": "supported",
+          "correct": "false"
+        },
+        {
+          "text": "developed",
+          "correct": "false"
+        },
+        {
+          "text": "proved",
+          "correct": "false"
+        }
+      ],
+      "text2": "to be a very productive meeting."
+    }
+  ]
+}

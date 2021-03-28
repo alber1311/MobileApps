@@ -17,14 +17,14 @@
         <Button
             android:id="@+id/buttonTest"
             style="?android:attr/buttonBarButtonStyle"
+            android:background="@android:color/holo_green_dark"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:enabled="true"
             android:text="@string/Test"
             android:textColor="@color/white"
             android:textSize="42sp"
-            app:backgroundTint="@android:color/holo_green_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -32,14 +32,13 @@
             android:id="@+id/buttonProfile"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:baselineAligned="false"
             android:enabled="false"
             android:text="@string/Profile"
             android:textColor="@android:color/darker_gray"
             android:textSize="42sp"
-            app:backgroundTint="@android:color/holo_green_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </LinearLayout>
@@ -59,7 +58,7 @@
             android:textColor="@android:color/holo_green_dark"
             android:textSize="46sp"
             android:textStyle="bold"
-            android:layout_marginTop="124dp"
+            android:layout_marginTop="112dp"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
     </RelativeLayout>
