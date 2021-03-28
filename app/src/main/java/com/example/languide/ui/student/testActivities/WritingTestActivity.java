@@ -66,8 +66,8 @@ public class WritingTestActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<WritingTest> call, Response<WritingTest> response) {
                 WritingTest writingTest = response.body();
-                titleExercise.setText(writingTest.getData().getExercise().getTitle());
-                instructionsExercise.setText(writingTest.getData().getExercise().getInstructions());
+                titleExercise.setText(writingTest.getTitle());
+                instructionsExercise.setText(writingTest.getInstructions());
                 //Manage exerciseContent and clickable options
 
 
@@ -77,7 +77,7 @@ public class WritingTestActivity extends AppCompatActivity {
                     DocumentReference documentReference = db.collection("ReadingTests").document(userID);
 
                     Map<String, Object> test = new HashMap<>();
-                    test.put("title", writingTest.getData().getExercise().getTitle());
+                    test.put("title", writingTest.getTitle());
                     test.put("grade", (grade*10.0)/WritingTestActivity.position);
 
                     documentReference.set(test);

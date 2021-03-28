@@ -35,4 +35,5 @@
     <string name="reading_tests">Czytanie</string>
     <string name="listening_tests">Zakończ</string>
     <string name="next">Next</string>
+    <string name="vocabulary_tests">Słuchanie</string>
 </resources>

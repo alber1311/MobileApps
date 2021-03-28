@@ -3,39 +3,14 @@ package com.example.languide.ui.student;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.languide.R;
-import com.example.languide.ui.student.showPrevTests.ShowReadingTestsActivity;
-import com.example.languide.ui.student.testActivities.ReadingTestActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import com.example.languide.ui.student.showPrevTests.*;
 
 public class ShowPrevResultsActivity extends AppCompatActivity {
 
@@ -57,13 +32,13 @@ public class ShowPrevResultsActivity extends AppCompatActivity {
             if (selection.equals("Reading")){
                 Intent intent = new Intent(ShowPrevResultsActivity.this, ShowReadingTestsActivity.class);
                 startActivity(intent);
+            } else if (selection.equals("Listening")){
+                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowListeningTestActivity.class);
+                startActivity(intent);
+            } else if (selection.equals("Vocabulary")){
+                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowVocabularyTestActivity.class);
+                startActivity(intent);
             /*} else if (selection.equals("Reading")){
-                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowListeningTestsActivity.class);
-                startActivity(intent);
-            } else if (selection.equals("Reading")){
-                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowVocabularyTestsActivity.class);
-                startActivity(intent);
-            } else if (selection.equals("Reading")){
                 Intent intent = new Intent(ShowPrevResultsActivity.this, ShowWritingTestsActivity.class);
                 startActivity(intent);
             } else if (selection.equals("Reading")){
@@ -74,31 +49,5 @@ public class ShowPrevResultsActivity extends AppCompatActivity {
             }
 
         });
-
-        /*DocumentReference documentReference2 = db.collection("ListeningTests").document(userID);
-        documentReference2.addSnapshotListener((value, error) -> {
-            assert value != null;
-            tests.add("Listening Tests:\nTitle:\t" + value.get("title") + ":\t" + value.get("grade") + "/10\n");
-        });
-
-        DocumentReference documentReference3 = db.collection("WritingTests").document(userID);
-        documentReference3.addSnapshotListener((value, error) -> {
-            assert value != null;
-            tests.add("Writing Tests:\nTitle:\t" + value.get("title") + ":\t" + value.get("grade") + "/10\n");
-        });
-
-        DocumentReference documentReference4 = db.collection("SpeakingTests").document(userID);
-        documentReference4.addSnapshotListener((value, error) -> {
-            assert value != null;
-            tests.add("Speaking Tests:\nTitle:\t" + value.get("title") + ":\t" + value.get("grade") + "/10\n");
-        });
-
-        DocumentReference documentReference5 = db.collection("VocabularyTests").document(userID);
-        documentReference5.addSnapshotListener((value, error) -> {
-            assert value != null;
-            tests.add("Vocabulary Tests:\nTitle:\t" + value.get("title") + ":\t" + value.get("grade") + "/10");
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(ShowPrevResultsActivity.this, android.R.layout.simple_list_item_1, tests);
-            listView.setAdapter(adapter);
-        });*/
     }
 }

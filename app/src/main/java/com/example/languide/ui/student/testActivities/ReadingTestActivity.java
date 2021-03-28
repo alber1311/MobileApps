@@ -79,6 +79,7 @@ public class ReadingTestActivity extends AppCompatActivity {
             loadLocalTest();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            Toast.makeText(ReadingTestActivity.this, "Something went wronk when retrieving the test :(", Toast.LENGTH_LONG).show();
         }
     }
 
