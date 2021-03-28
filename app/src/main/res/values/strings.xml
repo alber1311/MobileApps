@@ -54,5 +54,8 @@
     <string name="listening_tests">Listening Tests</string>
     <string name="solutions">SOLUTIONS</string>
     <string name="vocabulary_tests">Vocabulary Tests</string>
+    <string name="record">RECORD</string>
+    <string name="stop">STOP</string>
+    <string name="play">PLAY</string>
 
 </resources>
