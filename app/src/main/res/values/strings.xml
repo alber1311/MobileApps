@@ -50,5 +50,8 @@
     <string name="resetTests">Reset tests</string>
     <string name="playAudio">PLAY!</string>
     <string name="next">Next</string>
+    <string name="reading_tests">Reading Tests</string>
+    <string name="listening_tests">Listening Tests</string>
+    <string name="solutions">SOLUTIONS</string>
 
 </resources>

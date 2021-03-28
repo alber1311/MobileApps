@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.student.ShowPrevResultsActivity">
+    tools:context=".ui.student.showPrevTests.ShowReadingTestsActivity">
 
     <RelativeLayout
         android:id="@+id/Separator"
@@ -13,11 +13,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/idReading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:hint="@string/See_past_results"
+            android:hint="@string/reading_tests"
             android:textColor="@android:color/holo_green_dark"
             android:textColorHint="@android:color/holo_green_dark"
             android:textSize="36sp"
@@ -35,7 +35,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/idPastTests"
+            android:id="@+id/idReadingPastTests"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="82dp"
@@ -43,8 +43,19 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:textAlignment="center"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/averageReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idReadingPastTests"
+            android:textAlignment="center"
             android:gravity="center_horizontal"
-            android:entries="@array/choose"/>
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/holo_green_dark"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textSize="20sp"/>
 
     </RelativeLayout>
 

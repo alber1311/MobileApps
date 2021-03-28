@@ -47,4 +47,8 @@
     <string name="backToMain">Volver a página principal</string>
     <string name="resetTests">Resetear tests</string>
     <string name="playAudio">PLAY!</string>
+    <string name="solutions">SOLUCIONES</string>
+    <string name="reading_tests">Tests de lectura</string>
+    <string name="listening_tests">Tests de escucha</string>
+    <string name="next">Next</string>
 </resources>

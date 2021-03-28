@@ -53,7 +53,6 @@ public class ListeningTest {
         this.items = items;
     }
 
-    @NonNull
     @Override
     public String toString() {
         return items.toString();
@@ -87,7 +86,7 @@ public class ListeningTest {
         @NonNull
         @Override
         public String toString() {
-            return text;
+            return gap;
         }
 
     }

@@ -1,12 +1,16 @@
 package com.example.languide.ui.student;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +18,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.languide.R;
+import com.example.languide.ui.student.showPrevTests.ShowReadingTestsActivity;
 import com.example.languide.ui.student.testActivities.ReadingTestActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,9 +39,7 @@ import java.util.Set;
 
 public class ShowPrevResultsActivity extends AppCompatActivity {
 
-    FirebaseFirestore db;
     private ListView listView;
-    private TextView average;
 
     private double sum = 0;
     private int number = 0;
@@ -48,34 +51,28 @@ public class ShowPrevResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_prev_results);
 
         listView = findViewById(R.id.idPastTests);
-        average = findViewById(R.id.average);
 
-        db = FirebaseFirestore.getInstance();
-        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        ArrayList<String> tests = new ArrayList<>();
-
-        DocumentReference documentReference = db.collection("ReadingTests").document(userID);
-        documentReference.addSnapshotListener((value, error) -> {
-            assert value != null;
-            try {
-                Set<String> keys = value.getData().keySet();
-
-                ArrayList<String> entry = new ArrayList<>();
-                for (String key : keys) {
-                    Map<String, Object> m = (Map<String, Object>) value.getData().get(key);
-                    entry.add("Title:\t" + m.get("title") + "\nGrade: " + m.get("grade"));
-                    sum += Double.parseDouble(m.get("grade").toString());
-                    number++;
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(ShowPrevResultsActivity.this, android.R.layout.simple_list_item_1, entry);
-                listView.setAdapter(adapter);
-                double totalResult = sum/number;
-                String totalAverage = "Average:\t" + String.format("%.2f", totalResult);
-                average.setText(totalAverage);
-            } catch (Exception e) {
-                average.setText("No tests done yet!");
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            String selection = parent.getItemAtPosition(position).toString();
+            if (selection.equals("Reading")){
+                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowReadingTestsActivity.class);
+                startActivity(intent);
+            /*} else if (selection.equals("Reading")){
+                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowListeningTestsActivity.class);
+                startActivity(intent);
+            } else if (selection.equals("Reading")){
+                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowVocabularyTestsActivity.class);
+                startActivity(intent);
+            } else if (selection.equals("Reading")){
+                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowWritingTestsActivity.class);
+                startActivity(intent);
+            } else if (selection.equals("Reading")){
+                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowSpeakingTestsActivity.class);
+                startActivity(intent);*/
+            } else {
+                Toast.makeText(ShowPrevResultsActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
+
         });
 
         /*DocumentReference documentReference2 = db.collection("ListeningTests").document(userID);

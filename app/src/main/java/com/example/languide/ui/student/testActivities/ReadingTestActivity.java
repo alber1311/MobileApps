@@ -169,9 +169,7 @@ public class ReadingTestActivity extends AppCompatActivity {
         Gson gson=new Gson();
         InputStream in = getResources().openRawResource(R.raw.readingtest);
         String exercise = readTextFile(in);
-        Log.println(Log.INFO, "ReadingTestString", exercise);
         ReadingTest readingTest = gson.fromJson(exercise, ReadingTest.class);
-        Log.println(Log.INFO, "ReadingTestParsed", readingTest.toString());
 
         st = readingTest.toString();
 
@@ -221,8 +219,12 @@ public class ReadingTestActivity extends AppCompatActivity {
             DocumentReference documentReference = db.collection("ReadingTests").document(userID);
 
             documentReference.addSnapshotListener((value, error) -> {
-                Map<String, Object> size = value.getData();
-                ReadingTestActivity.testNumber = size.size();
+                if(value != null && value.exists()){
+                    Map<String, Object> size = value.getData();
+                    ReadingTestActivity.testNumber = size.size() + 1;
+                }else{
+                    ReadingTestActivity.testNumber = 1;
+                }
             });
 
             Map<String, Object> test = new HashMap<>();

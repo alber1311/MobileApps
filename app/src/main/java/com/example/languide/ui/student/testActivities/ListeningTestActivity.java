@@ -65,6 +65,7 @@ public class ListeningTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listening_test);
 
+        answerListening = findViewById(R.id.answerListening);
         titleExercise = findViewById(R.id.idTitleExercise);
         instructionsExercise = findViewById(R.id.test_instructions);
         exerciseContent = findViewById(R.id.exercise_text);
@@ -80,27 +81,36 @@ public class ListeningTestActivity extends AppCompatActivity {
         Gson gson=new Gson();
         InputStream in = getResources().openRawResource(R.raw.listeningtest);
         String exercise = readTextFile(in);
-        Log.println(Log.INFO, "ListeningTestString", exercise);
         ListeningTest listeningTest = gson.fromJson(exercise, ListeningTest.class);
-        Log.println(Log.INFO, "ListeningTestParsed", listeningTest.toString());
 
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.listeningaudio);
 
         titleExercise.setText(listeningTest.getTitle());
         instructionsExercise.setText(listeningTest.getInstructions());
-
-        for(int i = 0; i < listeningTest.getItems().size(); i++){
-            exerciseContent.setText(listeningTest.getItems().get(i).getText());
-            nextQuestion.setOnClickListener(v -> {
+        exerciseContent.setText(listeningTest.getItems().get(ListeningTestActivity.position).getText());
+        nextQuestion.setOnClickListener(v -> {
+            try {
                 String answer = answerListening.getText().toString();
-                try {
-                    answers.add(answer);
-                } catch (Exception e){
-                    e.printStackTrace();
+                if(answer.isEmpty()){
                     Toast.makeText(ListeningTestActivity.this, "Enter your answer", Toast.LENGTH_SHORT).show();
+                } else {
+                    answers.add(answer);
+                    if(answer.equals(listeningTest.getItems().get(ListeningTestActivity.position).getGap())) {
+                        grade++;
+                    }
+                    ListeningTestActivity.position++;
+                    if(listeningTest.getItems().size() != ListeningTestActivity.position){
+                        exerciseContent.setText(listeningTest.getItems().get(ListeningTestActivity.position).getText());
+                    } else {
+                        exerciseContent.setText("");
+                    }
+                    answerListening.setText("");
                 }
-            });
-        }
+            } catch (Exception e){
+                e.printStackTrace();
+                Toast.makeText(ListeningTestActivity.this, "Enter your answer", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //When everything is loaded set a ButtonClickListener to start playing the audio file.
         playAudio.setOnClickListener(v -> {
@@ -113,20 +123,30 @@ public class ListeningTestActivity extends AppCompatActivity {
             }
         });
 
-        String finalResolvedTest = loadResolvedTest(listeningTest);
         finishTest.setOnClickListener(v -> {
+            String finalResolvedTest = loadResolvedTest(listeningTest);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
             DocumentReference documentReference = db.collection("ListeningTests").document(userID);
 
             documentReference.addSnapshotListener((value, error) -> {
-                Map<String, Object> size = value.getData();
-                ListeningTestActivity.testNumber = size.size();
+                if(value != null && value.exists()){
+                    Map<String, Object> size = value.getData();
+                    ListeningTestActivity.testNumber = size.size() + 1;
+                }else{
+                    ListeningTestActivity.testNumber = 1;
+                }
+
             });
 
             Map<String, Object> test = new HashMap<>();
             test.put("title", listeningTest.getTitle());
-            test.put("grade", (grade*10.0)/ListeningTestActivity.position);
+            if(ListeningTestActivity.position != 0){
+                test.put("grade", (grade*10.0)/ListeningTestActivity.position);
+            } else {
+                test.put("grade", 0);
+            }
+
 
             Map<String, Object> testCollection = new HashMap<>();
             testCollection.put(String.valueOf(ListeningTestActivity.testNumber), test);
@@ -143,7 +163,7 @@ public class ListeningTestActivity extends AppCompatActivity {
     }
 
     public String loadResolvedTest(ListeningTest test){
-        return "";
+        return test.toString();
     }
 
     public void loadTest() {
