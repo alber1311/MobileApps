@@ -36,4 +36,6 @@
     <string name="listening_tests">Zakończ</string>
     <string name="next">Next</string>
     <string name="vocabulary_tests">Słuchanie</string>
+    <string name="play">PLAY</string>
+    <string name="stop">STOP</string>
 </resources>
