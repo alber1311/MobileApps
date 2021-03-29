@@ -59,7 +59,7 @@ public class ReadingTestActivity extends AppCompatActivity {
 
     private int grade = 0;
     private static int position = 0;
-    private static int testNumber = 0;
+    private static int testNumber = 1;
 
     private ReadingTest readingTest;
     private String st;

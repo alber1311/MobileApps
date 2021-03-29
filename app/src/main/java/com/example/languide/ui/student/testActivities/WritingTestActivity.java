@@ -15,13 +15,16 @@ import com.google.gson.Gson;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,13 +39,18 @@ public class WritingTestActivity extends AppCompatActivity {
     private TextView titleExercise;
     private TextView exerciseContent;
     private TextView instructionsExercise;
+    private TextView keyWord;
+    private EditText answer;
+    private Button nextQuestion;
     private Button finishTest;
 
     private String test;
     private String difficulty;
+    private ArrayList<String> answers = new ArrayList<>();
 
     private int grade = 0;
     private static int position = 0;
+    private static int testNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +60,17 @@ public class WritingTestActivity extends AppCompatActivity {
         titleExercise = findViewById(R.id.idTitleExercise);
         instructionsExercise = findViewById(R.id.test_instructions);
         exerciseContent = findViewById(R.id.exercise_text);
+        answer = findViewById(R.id.answerWriting);
+        nextQuestion = findViewById(R.id.nextWriting);
         finishTest = findViewById(R.id.finishTest);
+        keyWord = findViewById(R.id.keyword);
 
         Intent intent = getIntent();
         test = intent.getStringExtra("test_Name");
         difficulty = intent.getStringExtra("test_Difficulty");
 
         //loadTest();
+        loadLocalTest();
     }
 
     public void loadLocalTest() {
@@ -68,7 +80,76 @@ public class WritingTestActivity extends AppCompatActivity {
         WritingTest writingTest = gson.fromJson(exercise, WritingTest.class);
 
         //Missing
+        titleExercise.setText(writingTest.getTitle());
+        instructionsExercise.setText(writingTest.getInstructions());
+        exerciseContent.setText(writingTest.getItems().get(WritingTestActivity.position).toString());
+        keyWord.setText(writingTest.getItems().get(WritingTestActivity.position).getWord());
 
+        nextQuestion.setOnClickListener(v -> {
+            if (writingTest.getItems().size() - 1 != WritingTestActivity.position) {
+                try{
+                    String ans = answer.getText().toString();
+                    if(!ans.isEmpty()){
+                        answers.add(ans);
+                        if(answers.get(WritingTestActivity.position).equals(writingTest.getItems().get(WritingTestActivity.position).getAnswer())) {
+                            grade ++;
+                        }
+                        WritingTestActivity.position++;
+                        exerciseContent.setText(writingTest.getItems().get(WritingTestActivity.position).toString());
+                        keyWord.setText(writingTest.getItems().get(WritingTestActivity.position).getWord());
+                        answer.setText("");
+                    } else {
+                        Toast.makeText(WritingTestActivity.this, "Fill your answer!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(WritingTestActivity.this, "Fill your answer!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            } else {
+                Toast.makeText(WritingTestActivity.this, "You finished the test!", Toast.LENGTH_SHORT).show();
+                answer.setText("");
+            }
+        });
+
+        finishTest.setOnClickListener(v -> {
+            String resolvedTest = loadResolvedTest(writingTest);
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            DocumentReference documentReference = db.collection("WritingTests").document(userID);
+
+            documentReference.addSnapshotListener((value, error) -> {
+                if(value != null && value.exists()){
+                    Map<String, Object> size = value.getData();
+                    WritingTestActivity.testNumber = size.size() + 1;
+                }else{
+                    WritingTestActivity.testNumber = 1;
+                }
+            });
+
+            Map<String, Object> test = new HashMap<>();
+            test.put("title", writingTest.getTitle());
+            test.put("grade", (grade*10.0)/WritingTestActivity.position);
+
+            Map<String, Object> testCollection = new HashMap<>();
+            testCollection.put(String.valueOf(WritingTestActivity.testNumber), test);
+
+            documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
+
+            Intent intent = new Intent(WritingTestActivity.this, TestResultActivity.class);
+            intent.putExtra("exercise", resolvedTest);
+            intent.putExtra("grade", (grade*10.0)/WritingTestActivity.position);
+            WritingTestActivity.position = 0;
+            startActivity(intent);
+        });
+    }
+
+    private String loadResolvedTest(WritingTest writingTest) {
+        String st = "";
+        for (int i = 0; i < writingTest.getItems().size(); i++){
+            st += writingTest.getItems().get(i).getAnswer() + " / ";
+        }
+        return st;
     }
 
     public String readTextFile(InputStream inputStream) {
