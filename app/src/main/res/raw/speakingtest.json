@@ -1,0 +1,38 @@
+{
+  "title": "Fill in the blanks with suitable words",
+  "instructions": "Choose the word you think fits in each space.",
+  "items": [
+    {
+      "text" : "Are you studying English?",
+      "answer": "yes I am"
+    },
+    {
+      "text" : "Do you have an elephant as a pet?",
+      "answer": "no I don´t"
+    },
+    {
+      "text" : "Have you been there?",
+      "answer": "no I haven´t"
+    },
+    {
+      "text" : "Would she stay here?",
+      "answer": "yes she would"
+    },
+    {
+      "text" : "Are you reading the book?",
+      "answer": "yes I am"
+    },
+    {
+      "text" : "Question6",
+      "answer": "Answer6"
+    },
+    {
+      "text" : "Question7",
+      "answer": "Answer7"
+    },
+    {
+      "text" : "Question8",
+      "answer": "Answer8"
+    }
+  ]
+}

@@ -38,12 +38,12 @@ public class ShowPrevResultsActivity extends AppCompatActivity {
             } else if (selection.equals("Vocabulary")){
                 Intent intent = new Intent(ShowPrevResultsActivity.this, ShowVocabularyTestActivity.class);
                 startActivity(intent);
-            /*} else if (selection.equals("Reading")){
-                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowWritingTestsActivity.class);
+            } else if (selection.equals("Writing")){
+                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowWritingTestActivity.class);
                 startActivity(intent);
-            } else if (selection.equals("Reading")){
-                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowSpeakingTestsActivity.class);
-                startActivity(intent);*/
+            } else if (selection.equals("Speaking")){
+                Intent intent = new Intent(ShowPrevResultsActivity.this, ShowSpeakingTestActivity.class);
+                startActivity(intent);
             } else {
                 Toast.makeText(ShowPrevResultsActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }

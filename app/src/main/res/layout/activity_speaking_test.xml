@@ -31,7 +31,6 @@
             android:layout_below="@id/idTitle3"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:gravity="center_horizontal"
-            android:text="@string/Title"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -42,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/idTitleExercise"
             android:textColor="@color/white"
-            android:text="Instructions of the test will be replaced with the actual"
             android:textAlignment="center"
             android:gravity="center_horizontal"
             android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -60,17 +58,45 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:gravity="center_horizontal"
-            android:text="Exercise content, this is a test of the content which will
-                be replaced later with an audio file to be played and
-                proceed with the exercise"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/exercise_text"
+            android:background="@drawable/round_borders"
+            android:textColor="@color/black"
+            android:text="@string/record"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <TextView
+            android:id="@+id/answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/record"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/answer"
+            android:background="@drawable/round_borders"
+            android:text="@string/next"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"/>
 
         <Button
             android:id="@+id/finishTest"
             android:layout_width="64dp"
             android:layout_height="36dp"
-            android:layout_below="@id/exercise_text"
+            android:layout_below="@id/next"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:background="@drawable/round_borders"
