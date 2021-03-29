@@ -1,0 +1,66 @@
+{
+  "title": "Fill in the blanks with suitable words",
+  "instructions": "Write the word you think fits in each space with a variation of the word given.",
+  "items": [
+    {
+      "text1": "Some years ago, there were",
+      "word": "predict",
+      "answer": "predictions",
+      "text2": "that this would happened."
+    },
+    {
+      "text1": "Email have been replaced by social",
+      "word": "work",
+      "answer": "network",
+      "text2": "sites."
+    },
+    {
+      "text1": "The volume of the music has become",
+      "word": "stress",
+      "answer": "stressful",
+      "text2": "for many people."
+    },
+    {
+      "text1": "Often we fail to pay attention when",
+      "word": "introduce",
+      "answer": "introductions",
+      "text2": "are made."
+    },
+    {
+      "text1": "There are some simple ways you can",
+      "word": "come",
+      "answer": "overcome",
+      "text2": "a problem."
+    },
+    {
+      "text1": "You would be surprised at the wide",
+      "word": "vary",
+      "answer": "variety",
+      "text2": "of shapes people's features have."
+    },
+    {
+      "text1": "You have to improve your powers of",
+      "word": "observe",
+      "answer": "observation",
+      "text2": "studying faces in public places."
+    },
+    {
+      "text1": "I don't think local customs and national",
+      "word": "character",
+      "answer": "characteristics",
+      "text2": "will go away."
+    },
+    {
+      "text1": "The",
+      "word": "lose",
+      "answer": "less",
+      "text2": "of so much rain-forest will have a terrible effect."
+    },
+    {
+      "text1": "Our situation on the island seemed",
+      "word": "hope",
+      "answer": "hopeless",
+      "text2": "as we had no water or food left."
+    }
+  ]
+}

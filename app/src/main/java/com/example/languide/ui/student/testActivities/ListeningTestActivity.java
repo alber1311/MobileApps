@@ -48,11 +48,6 @@ public class ListeningTestActivity extends AppCompatActivity {
     private Button playAudio;
     private  Button nextQuestion;
 
-    private String exerciseAudio;
-    private String test;
-    private String difficulty;
-
-    private FirebaseFirestore db;
 
     private int grade = 0;
     private static int position = 0;
@@ -177,7 +172,7 @@ public class ListeningTestActivity extends AppCompatActivity {
                 ListeningTest listeningTest = response.body();
                 titleExercise.setText(listeningTest.getTitle());
                 instructionsExercise.setText(listeningTest.getInstructions());
-                exerciseAudio = listeningTest.getAudio();
+                //exerciseAudio = listeningTest.getAudio();
                 //Manage the audio
 
                 finishTest.setOnClickListener(v -> {

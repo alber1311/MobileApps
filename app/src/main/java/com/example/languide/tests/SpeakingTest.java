@@ -74,7 +74,7 @@ public class SpeakingTest{
             @NonNull
             @Override
             public String toString() {
-                return text;
+                return answer;
             }
         }
 }

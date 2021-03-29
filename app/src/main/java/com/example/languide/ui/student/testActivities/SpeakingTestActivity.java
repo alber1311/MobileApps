@@ -2,6 +2,7 @@ package com.example.languide.ui.student.testActivities;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -11,6 +12,8 @@ import com.example.languide.api.TestService;
 import com.example.languide.tests.ReadingTest;
 import com.example.languide.tests.SpeakingTest;
 import com.example.languide.tests.VocabularyTest;
+import com.example.languide.ui.login.LoginActivity;
+import com.example.languide.ui.student.ProfileActivity;
 import com.example.languide.ui.student.StudentMainActivity;
 import com.example.languide.ui.student.TestResultActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +35,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.speech.RecognizerIntent;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -52,26 +56,20 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SpeakingTestActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
+public class SpeakingTestActivity extends AppCompatActivity {
 
     private TextView titleExercise;
     private TextView exerciseContent;
     private TextView instructionsExercise;
     private Button finishTest;
     private Button record;
-    private Button stop;
-    private Button play;
     private Button next;
 
     private TextView answer;
 
-    private MediaRecorder recorder;
-    private MediaPlayer player;
-
     private int grade = 0;
     private static int position = 0;
-    private String test;
-    private String difficulty;
+    private static int testNumber = 0;
 
     private String st;
     private String path;
@@ -90,8 +88,6 @@ public class SpeakingTestActivity extends AppCompatActivity implements MediaPlay
         exerciseContent = findViewById(R.id.exercise_text);
         finishTest = findViewById(R.id.finishTest);
         record = findViewById(R.id.record);
-        //stop = findViewById(R.id.stop);
-        //play = findViewById(R.id.play);
         next = findViewById(R.id.next);
         answer = findViewById(R.id.answer);
 
@@ -127,38 +123,6 @@ public class SpeakingTestActivity extends AppCompatActivity implements MediaPlay
         exerciseContent.setMovementMethod(new ScrollingMovementMethod());
 
         record.setOnClickListener(v -> {
-            /*if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
-                    ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(SpeakingTestActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1000);
-            } else {
-                Toast.makeText(SpeakingTestActivity.this, "You have permissions", Toast.LENGTH_SHORT).show();
-            }
-
-
-            recorder = new MediaRecorder();
-            recorder.reset();
-            recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-
-            file = new File(Environment.getExternalStorageDirectory(),"Recording.3gp");
-            if(!file.exists()){ // Si no existe, crea el archivo.
-                try {
-                    file.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            recorder.setOutputFile(file);
-            try {
-                recorder.prepare();
-                recorder.start();
-                Toast.makeText(SpeakingTestActivity.this, "Recording started", Toast.LENGTH_SHORT).show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
-
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.forLanguageTag("en"));
@@ -169,36 +133,6 @@ public class SpeakingTestActivity extends AppCompatActivity implements MediaPlay
             }
         });
 
-        /*stop.setOnClickListener(v -> {
-            if (recorder != null) {
-                recorder.stop();
-                recorder.reset();
-                recorder.release();
-                recorder = null;
-                Toast.makeText(SpeakingTestActivity.this, "Recording succeed", Toast.LENGTH_SHORT).show();
-            }
-
-        });
-        play.setOnClickListener(v -> {
-            player = new MediaPlayer();
-
-            try {
-                player.setDataSource(String.valueOf(file));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                player.prepare();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            player.setOnPreparedListener(mp -> {
-                player.start();
-                Toast.makeText(SpeakingTestActivity.this, "Playing recording", Toast.LENGTH_SHORT).show();
-            });
-
-        });*/
-
         next.setOnClickListener(v -> {
             if (SpeakingTestActivity.position < speakingTest.getItems().size() - 1){
                 SpeakingTestActivity.position++;
@@ -207,12 +141,63 @@ public class SpeakingTestActivity extends AppCompatActivity implements MediaPlay
         });
 
         finishTest.setOnClickListener(v -> {
-            //Calcula la nota a través del array de answers comparando en un for con las answers del json parseado en speakingTest
-            Intent intent = new Intent(SpeakingTestActivity.this, TestResultActivity.class);
-            intent.putExtra("exercise", "finalResolvedTest");
-            intent.putExtra("grade", (grade*10.0)/SpeakingTestActivity.position);
-            SpeakingTestActivity.position = 0;
-            startActivity(intent);
+            if (answers.size() != speakingTest.getItems().size()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("EXIT");
+                builder.setMessage("Are you sure you want to exit the test without finishing?");
+                builder.setPositiveButton("YES", (dialog, which) -> {
+                    Toast.makeText(SpeakingTestActivity.this, "Test wasn´t saved, finish the test to see the results!", Toast.LENGTH_LONG).show();
+                    Intent intento = new Intent(SpeakingTestActivity.this, TestResultActivity.class);
+                    intento.putExtra("exercise", st);
+                    intento.putExtra("grade", 0);
+                    startActivity(intento);
+                });
+                builder.setNegativeButton("NO", (dialog, which) -> dialog.cancel());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                //Calcula la nota a través del array de answers comparando en un for con las answers del json parseado en speakingTest
+                for (int i = 0; i < speakingTest.getItems().size(); i++) {
+                    if(answers.get(i).equals(speakingTest.getItems().get(i).getAnswer())) {
+                        Log.println(Log.INFO, "ANSWER", answers.get(i));
+                        grade++;
+                    }
+                }
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("SpeakingTests").document(userID);
+
+                documentReference.addSnapshotListener((value, error) -> {
+                    if(value != null && value.exists()){
+                        Map<String, Object> size = value.getData();
+                        SpeakingTestActivity.testNumber = size.size() + 1;
+                    }else{
+                        SpeakingTestActivity.testNumber = 1;
+                    }
+
+                });
+
+                Map<String, Object> test = new HashMap<>();
+                test.put("title", speakingTest.getTitle());
+                if(SpeakingTestActivity.position != 0){
+                    test.put("grade", (grade*10.0)/speakingTest.getItems().size());
+                } else {
+                    test.put("grade", 0);
+                }
+
+
+                Map<String, Object> testCollection = new HashMap<>();
+                testCollection.put(String.valueOf(SpeakingTestActivity.testNumber), test);
+
+                documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
+
+                Intent intent = new Intent(SpeakingTestActivity.this, TestResultActivity.class);
+                intent.putExtra("exercise", st);
+                intent.putExtra("grade", (grade*10.0)/SpeakingTestActivity.position);
+                SpeakingTestActivity.position = 0;
+                startActivity(intent);
+            }
         });
     }
 
@@ -274,10 +259,5 @@ public class SpeakingTestActivity extends AppCompatActivity implements MediaPlay
                 startActivity(intentFail);
             }
         });
-    }
-
-    @Override
-    public void onCompletion(MediaPlayer mp) {
-
     }
 }

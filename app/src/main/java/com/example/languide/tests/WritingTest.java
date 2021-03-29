@@ -14,18 +14,6 @@ public class WritingTest{
     @SerializedName("instructions")
     @Expose
     private String instructions;
-    @SerializedName("random")
-    @Expose
-    private Boolean random;
-    @SerializedName("randomiseChoices")
-    @Expose
-    private Boolean randomiseChoices;
-    @SerializedName("showQuestionNumbers")
-    @Expose
-    private Boolean showQuestionNumbers;
-    @SerializedName("sectionsOnSamePage")
-    @Expose
-    private Boolean sectionsOnSamePage;
     @SerializedName("items")
     @Expose
     private List<WritingTest.Item> items = null;
@@ -44,38 +32,6 @@ public class WritingTest{
 
     public void setInstructions(String instructions) {
         this.instructions = instructions;
-    }
-
-    public Boolean getRandom() {
-        return random;
-    }
-
-    public void setRandom(Boolean random) {
-        this.random = random;
-    }
-
-    public Boolean getRandomiseChoices() {
-        return randomiseChoices;
-    }
-
-    public void setRandomiseChoices(Boolean randomiseChoices) {
-        this.randomiseChoices = randomiseChoices;
-    }
-
-    public Boolean getShowQuestionNumbers() {
-        return showQuestionNumbers;
-    }
-
-    public void setShowQuestionNumbers(Boolean showQuestionNumbers) {
-        this.showQuestionNumbers = showQuestionNumbers;
-    }
-
-    public Boolean getSectionsOnSamePage() {
-        return sectionsOnSamePage;
-    }
-
-    public void setSectionsOnSamePage(Boolean sectionsOnSamePage) {
-        this.sectionsOnSamePage = sectionsOnSamePage;
     }
 
     public List<WritingTest.Item> getItems() {
@@ -97,9 +53,12 @@ public class WritingTest{
         @SerializedName("text1")
         @Expose
         private String text1;
-        @SerializedName("choices")
+        @SerializedName("word")
         @Expose
-        private List<WritingTest.Item.Choice> choices = null;
+        private String word;
+        @SerializedName("answer")
+        @Expose
+        private String answer;
         @SerializedName("text2")
         @Expose
         private String text2;
@@ -112,12 +71,20 @@ public class WritingTest{
             this.text1 = text1;
         }
 
-        public List<WritingTest.Item.Choice> getChoices() {
-            return choices;
+        public String getWord() {
+            return word;
         }
 
-        public void setChoices(List<WritingTest.Item.Choice> choices) {
-            this.choices = choices;
+        public void setWord(String word) {
+            this.word = word;
+        }
+
+        public String getAnswer() {
+            return answer;
+        }
+
+        public void setAnswer(String answer) {
+            this.answer = answer;
         }
 
         public String getText2() {
@@ -134,32 +101,6 @@ public class WritingTest{
             return text1 + "_____" + text2;
         }
 
-        public class Choice {
-
-            @SerializedName("text")
-            @Expose
-            private String text;
-            @SerializedName("correct")
-            @Expose
-            private Boolean correct;
-
-            public String getText() {
-                return text;
-            }
-
-            public void setText(String text) {
-                this.text = text;
-            }
-
-            public Boolean getCorrect() {
-                return correct;
-            }
-
-            public void setCorrect(Boolean correct) {
-                this.correct = correct;
-            }
-
-        }
 
     }
 }

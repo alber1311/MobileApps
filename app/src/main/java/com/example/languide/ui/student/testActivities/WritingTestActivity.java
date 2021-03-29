@@ -11,6 +11,7 @@ import com.example.languide.ui.student.TestResultActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +59,33 @@ public class WritingTestActivity extends AppCompatActivity {
         difficulty = intent.getStringExtra("test_Difficulty");
 
         //loadTest();
+    }
+
+    public void loadLocalTest() {
+        Gson gson=new Gson();
+        InputStream in = getResources().openRawResource(R.raw.writingtest);
+        String exercise = readTextFile(in);
+        WritingTest writingTest = gson.fromJson(exercise, WritingTest.class);
+
+        //Missing
+
+    }
+
+    public String readTextFile(InputStream inputStream) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        byte buf[] = new byte[1024];
+        int len;
+        try {
+            while ((len = inputStream.read(buf)) != -1) {
+                outputStream.write(buf, 0, len);
+            }
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException e) {
+
+        }
+        return outputStream.toString();
     }
 
     public void loadTest() {

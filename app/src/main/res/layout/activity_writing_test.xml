@@ -31,7 +31,6 @@
             android:layout_below="@id/idTitle3"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:gravity="center_horizontal"
-            android:text="@string/Title"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp" />
