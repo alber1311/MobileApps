@@ -76,8 +76,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/profile_separator"
             android:background="@drawable/round_borders_logout"
-            android:hint="@string/action_log_out"
-            android:textColor="@android:color/primary_text_dark"
+            android:text="@string/action_log_out"
+            android:textColor="@color/black"
             android:textSize="14sp"
             app:background="@drawable/round_borders_logout" />
 
@@ -89,8 +89,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:textSize="22sp"
-            android:hint="@string/prompt_email"
+            android:textSize="20sp"
+            android:text="@string/prompt_email"
             app:layout_constraintHorizontal_bias="1.0"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginStart="@dimen/activity_horizontal_margin" />
@@ -103,7 +103,7 @@
             android:layout_toRightOf="@+id/idEmailHint"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:layout_constraintHorizontal_bias="1.0"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginEnd="@dimen/activity_horizontal_margin" />
@@ -116,10 +116,10 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:textSize="22sp"
-            android:hint="@string/prompt_name"
+            android:textSize="20sp"
+            android:text="@string/prompt_name"
             app:layout_constraintHorizontal_bias="1.0"
-            android:layout_below="@id/idEmailHint"
+            android:layout_below="@id/idEmailProfile"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginStart="@dimen/activity_horizontal_margin" />
 
@@ -131,7 +131,7 @@
             android:layout_toRightOf="@+id/idNameHint"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_below="@id/idEmailProfile"
             android:textColor="@android:color/primary_text_dark"
@@ -145,10 +145,10 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:textSize="22sp"
-            android:hint="@string/role_spinner"
+            android:textSize="20sp"
+            android:text="@string/role_spinner"
             app:layout_constraintHorizontal_bias="1.0"
-            android:layout_below="@id/idNameHint"
+            android:layout_below="@id/idNameProfile"
             android:textColor="@android:color/primary_text_dark"
             android:layout_marginStart="@dimen/activity_horizontal_margin" />
 
@@ -160,7 +160,7 @@
             android:layout_toRightOf="@+id/idRoleHint"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_below="@id/idNameProfile"
             android:textColor="@android:color/primary_text_dark"

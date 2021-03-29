@@ -41,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/idTitleExercise"
             android:textColor="@color/white"
-            android:text="Instructions of the test will be replaced with the actual"
             android:textAlignment="center"
             android:gravity="center_horizontal"
             android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -59,11 +58,9 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:gravity="center_horizontal"
-            android:text="Exercise content, this is a test of the content which will
-                be replaced later with an audio file to be played and
-                proceed with the exercise"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_centerHorizontal="true"/>
 
         <Button
             android:id="@+id/finishTest"
