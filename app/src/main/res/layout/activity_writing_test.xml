@@ -85,7 +85,8 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/keyword"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:hint="@string/fill_with_your_answer"/>
 
         <Button
             android:id="@+id/nextWriting"

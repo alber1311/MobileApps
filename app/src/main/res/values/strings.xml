@@ -59,5 +59,6 @@
     <string name="play" translatable="false">PLAY</string>
     <string name="writing_tests" translatable="false">Writing Tests</string>
     <string name="speaking_tests" translatable="false">Speaking tests</string>
+    <string name="fill_with_your_answer" translatable="false">Fill with your answer</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.example.languide.ui.student.testActivities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.languide.*;
 import com.example.languide.api.TestService;
@@ -120,40 +121,56 @@ public class ListeningTestActivity extends AppCompatActivity {
 
         finishTest.setOnClickListener(v -> {
             String finalResolvedTest = loadResolvedTest(listeningTest);
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            DocumentReference documentReference = db.collection("ListeningTests").document(userID);
+            if (ListeningTestActivity.position != listeningTest.getItems().size()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("EXIT");
+                builder.setMessage("Are you sure you want to exit the test without finishing?");
+                builder.setPositiveButton("YES", (dialog, which) -> {
+                    Toast.makeText(ListeningTestActivity.this, "Test wasn´t saved, finish the test to see the results!", Toast.LENGTH_LONG).show();
+                    Intent intento = new Intent(ListeningTestActivity.this, TestResultActivity.class);
+                    intento.putExtra("exercise", finalResolvedTest);
+                    intento.putExtra("grade", 0);
+                    startActivity(intento);
+                });
+                builder.setNegativeButton("NO", (dialog, which) -> dialog.cancel());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("ListeningTests").document(userID);
 
-            documentReference.addSnapshotListener((value, error) -> {
-                if(value != null && value.exists()){
-                    Map<String, Object> size = value.getData();
-                    ListeningTestActivity.testNumber = size.size() + 1;
-                }else{
-                    ListeningTestActivity.testNumber = 1;
+                documentReference.addSnapshotListener((value, error) -> {
+                    if (value != null && value.exists()) {
+                        Map<String, Object> size = value.getData();
+                        ListeningTestActivity.testNumber = size.size() + 1;
+                    } else {
+                        ListeningTestActivity.testNumber = 1;
+                    }
+
+                });
+
+                Map<String, Object> test = new HashMap<>();
+                test.put("title", listeningTest.getTitle());
+                if (ListeningTestActivity.position != 0) {
+                    test.put("grade", (grade * 10.0) / ListeningTestActivity.position);
+                } else {
+                    test.put("grade", 0);
                 }
 
-            });
 
-            Map<String, Object> test = new HashMap<>();
-            test.put("title", listeningTest.getTitle());
-            if(ListeningTestActivity.position != 0){
-                test.put("grade", (grade*10.0)/ListeningTestActivity.position);
-            } else {
-                test.put("grade", 0);
+                Map<String, Object> testCollection = new HashMap<>();
+                testCollection.put(String.valueOf(ListeningTestActivity.testNumber), test);
+
+                documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
+
+                //documentReference.set(testCollection);
+                Intent intent = new Intent(ListeningTestActivity.this, TestResultActivity.class);
+                intent.putExtra("exercise", finalResolvedTest);
+                intent.putExtra("grade", (grade * 10.0) / ListeningTestActivity.position);
+                ListeningTestActivity.position = 0;
+                startActivity(intent);
             }
-
-
-            Map<String, Object> testCollection = new HashMap<>();
-            testCollection.put(String.valueOf(ListeningTestActivity.testNumber), test);
-
-            documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
-
-            //documentReference.set(testCollection);
-            Intent intent = new Intent(ListeningTestActivity.this, TestResultActivity.class);
-            intent.putExtra("exercise", finalResolvedTest);
-            intent.putExtra("grade", (grade*10.0)/ListeningTestActivity.position);
-            ListeningTestActivity.position = 0;
-            startActivity(intent);
         });
     }
 

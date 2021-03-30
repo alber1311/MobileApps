@@ -1,5 +1,6 @@
 package com.example.languide.ui.student.testActivities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.languide.*;
 import com.example.languide.api.TestService;
@@ -113,34 +114,49 @@ public class WritingTestActivity extends AppCompatActivity {
 
         finishTest.setOnClickListener(v -> {
             String resolvedTest = loadResolvedTest(writingTest);
+            if (answers.size() != writingTest.getItems().size()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("EXIT");
+                builder.setMessage("Are you sure you want to exit the test without finishing?");
+                builder.setPositiveButton("YES", (dialog, which) -> {
+                    Toast.makeText(WritingTestActivity.this, "Test wasn´t saved, finish the test to see the results!", Toast.LENGTH_LONG).show();
+                    Intent intento = new Intent(WritingTestActivity.this, TestResultActivity.class);
+                    intento.putExtra("exercise", resolvedTest);
+                    intento.putExtra("grade", 0);
+                    startActivity(intento);
+                });
+                builder.setNegativeButton("NO", (dialog, which) -> dialog.cancel());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("WritingTests").document(userID);
 
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            DocumentReference documentReference = db.collection("WritingTests").document(userID);
+                documentReference.addSnapshotListener((value, error) -> {
+                    if (value != null && value.exists()) {
+                        Map<String, Object> size = value.getData();
+                        WritingTestActivity.testNumber = size.size() + 1;
+                    } else {
+                        WritingTestActivity.testNumber = 1;
+                    }
+                });
 
-            documentReference.addSnapshotListener((value, error) -> {
-                if(value != null && value.exists()){
-                    Map<String, Object> size = value.getData();
-                    WritingTestActivity.testNumber = size.size() + 1;
-                }else{
-                    WritingTestActivity.testNumber = 1;
-                }
-            });
+                Map<String, Object> test = new HashMap<>();
+                test.put("title", writingTest.getTitle());
+                test.put("grade", (grade*10.0)/WritingTestActivity.position);
 
-            Map<String, Object> test = new HashMap<>();
-            test.put("title", writingTest.getTitle());
-            test.put("grade", (grade*10.0)/WritingTestActivity.position);
+                Map<String, Object> testCollection = new HashMap<>();
+                testCollection.put(String.valueOf(WritingTestActivity.testNumber), test);
 
-            Map<String, Object> testCollection = new HashMap<>();
-            testCollection.put(String.valueOf(WritingTestActivity.testNumber), test);
+                documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
 
-            documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
-
-            Intent intent = new Intent(WritingTestActivity.this, TestResultActivity.class);
-            intent.putExtra("exercise", resolvedTest);
-            intent.putExtra("grade", (grade*10.0)/WritingTestActivity.position);
-            WritingTestActivity.position = 0;
-            startActivity(intent);
+                Intent intent = new Intent(WritingTestActivity.this, TestResultActivity.class);
+                intent.putExtra("exercise", resolvedTest);
+                intent.putExtra("grade", (grade*10.0)/writingTest.getItems().size());
+                WritingTestActivity.position = 0;
+                startActivity(intent);
+            }
         });
     }
 
@@ -180,8 +196,6 @@ public class WritingTestActivity extends AppCompatActivity {
                 WritingTest writingTest = response.body();
                 titleExercise.setText(writingTest.getTitle());
                 instructionsExercise.setText(writingTest.getInstructions());
-                //Manage exerciseContent and clickable options
-
 
                 finishTest.setOnClickListener(v -> {
                     FirebaseFirestore db = FirebaseFirestore.getInstance();

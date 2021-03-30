@@ -1,5 +1,6 @@
 package com.example.languide.ui.student.testActivities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.languide.*;
 import com.example.languide.api.TestService;
@@ -124,34 +125,51 @@ public class VocabularyTestActivity extends AppCompatActivity {
         });
         String finalResolvedTest = loadResolvedTest(vocabularyTest);
         finishTest.setOnClickListener(v -> {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            DocumentReference documentReference = db.collection("VocabularyTests").document(userID);
+            if (VocabularyTestActivity.position != vocabularyTest.getItems().size()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("EXIT");
+                builder.setMessage("Are you sure you want to exit the test without finishing?");
+                builder.setPositiveButton("YES", (dialog, which) -> {
+                    Toast.makeText(VocabularyTestActivity.this, "Test wasn´t saved, finish the test to see the results!", Toast.LENGTH_LONG).show();
+                    Intent intento = new Intent(VocabularyTestActivity.this, TestResultActivity.class);
+                    intento.putExtra("exercise", st);
+                    intento.putExtra("grade", 0);
+                    startActivity(intento);
+                });
+                builder.setNegativeButton("NO", (dialog, which) -> dialog.cancel());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("VocabularyTests").document(userID);
 
-            documentReference.addSnapshotListener((value, error) -> {
-                if(value != null && value.exists()){
-                    Map<String, Object> size = value.getData();
-                    VocabularyTestActivity.testNumber = size.size() + 1;
-                }else{
-                    VocabularyTestActivity.testNumber = 1;
-                }
-            });
+                documentReference.addSnapshotListener((value, error) -> {
+                    if (value != null && value.exists()) {
+                        Map<String, Object> size = value.getData();
+                        VocabularyTestActivity.testNumber = size.size() + 1;
+                    } else {
+                        VocabularyTestActivity.testNumber = 1;
+                    }
+                });
+                Map<String, Object> test = new HashMap<>();
+                test.put("title", vocabularyTest.getTitle());
+                test.put("grade", (grade*10.0)/vocabularyTest.getItems().size());
 
-            Map<String, Object> test = new HashMap<>();
-            test.put("title", vocabularyTest.getTitle());
-            test.put("grade", (grade*10.0)/VocabularyTestActivity.position);
+                Map<String, Object> testCollection = new HashMap<>();
+                testCollection.put(String.valueOf(VocabularyTestActivity.testNumber), test);
 
-            Map<String, Object> testCollection = new HashMap<>();
-            testCollection.put(String.valueOf(VocabularyTestActivity.testNumber), test);
+                documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
 
-            documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
+                //documentReference.set(testCollection);
+                Intent intent = new Intent(VocabularyTestActivity.this, TestResultActivity.class);
+                intent.putExtra("exercise", finalResolvedTest);
+                intent.putExtra("grade", (grade*10.0)/VocabularyTestActivity.position);
+                VocabularyTestActivity.position = 0;
+                startActivity(intent);
+            }
 
-            //documentReference.set(testCollection);
-            Intent intent = new Intent(VocabularyTestActivity.this, TestResultActivity.class);
-            intent.putExtra("exercise", finalResolvedTest);
-            intent.putExtra("grade", (grade*10.0)/VocabularyTestActivity.position);
-            VocabularyTestActivity.position = 0;
-            startActivity(intent);
+
         });
     }
 

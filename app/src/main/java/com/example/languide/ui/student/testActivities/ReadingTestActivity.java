@@ -2,6 +2,7 @@ package com.example.languide.ui.student.testActivities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.languide.*;
 import com.example.languide.api.TestService;
@@ -19,7 +20,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.gson.Gson;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.text.method.ScrollingMovementMethod;
 import android.util.JsonReader;
 import android.util.Log;
@@ -191,8 +194,8 @@ public class ReadingTestActivity extends AppCompatActivity {
         AtomicReference<ArrayAdapter<String>> adapter = new AtomicReference<>(new ArrayAdapter<>(ReadingTestActivity.this, android.R.layout.simple_list_item_1, choices));
         listView.setAdapter(adapter.get());
         listView.setOnItemClickListener((parent, view, position, id) -> {
-
-            st = st.replaceFirst("_____", " " + choices.get(position) + " ");
+            String selection = choices.get(position);
+            st = st.replaceFirst("_____", " [ " + selection + " ] ");
             exerciseContent.setText(st);
 
             if (choicesResult.get(position).equals(true)){
@@ -215,34 +218,51 @@ public class ReadingTestActivity extends AppCompatActivity {
         });
         String finalResolvedTest = loadResolvedTest(readingTest);
         finishTest.setOnClickListener(v -> {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            DocumentReference documentReference = db.collection("ReadingTests").document(userID);
+            if (ReadingTestActivity.position != readingTest.getItems().size()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("EXIT");
+                builder.setMessage("Are you sure you want to exit the test without finishing?");
+                builder.setPositiveButton("YES", (dialog, which) -> {
+                    Toast.makeText(ReadingTestActivity.this, "Test wasn´t saved, finish the test to see the results!", Toast.LENGTH_LONG).show();
+                    Intent intento = new Intent(ReadingTestActivity.this, TestResultActivity.class);
+                    intento.putExtra("exercise", st);
+                    intento.putExtra("grade", 0);
+                    startActivity(intento);
+                });
+                builder.setNegativeButton("NO", (dialog, which) -> dialog.cancel());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("ReadingTests").document(userID);
 
-            documentReference.addSnapshotListener((value, error) -> {
-                if(value != null && value.exists()){
-                    Map<String, Object> size = value.getData();
-                    ReadingTestActivity.testNumber = size.size() + 1;
-                }else{
-                    ReadingTestActivity.testNumber = 1;
-                }
-            });
+                documentReference.addSnapshotListener((value, error) -> {
+                    if(value != null && value.exists()){
+                        Map<String, Object> size = value.getData();
+                        ReadingTestActivity.testNumber = size.size() + 1;
+                    }else{
+                        ReadingTestActivity.testNumber = 1;
+                    }
+                });
 
-            Map<String, Object> test = new HashMap<>();
-            test.put("title", readingTest.getTitle());
-            test.put("grade", (grade*10.0)/ReadingTestActivity.position);
+                Map<String, Object> test = new HashMap<>();
+                test.put("title", readingTest.getTitle());
+                test.put("grade", (grade*10.0)/ReadingTestActivity.position);
 
-            Map<String, Object> testCollection = new HashMap<>();
-            testCollection.put(String.valueOf(ReadingTestActivity.testNumber), test);
+                Map<String, Object> testCollection = new HashMap<>();
+                testCollection.put(String.valueOf(ReadingTestActivity.testNumber), test);
 
-            documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
+                documentReference.update(testCollection).addOnFailureListener(e -> documentReference.set(testCollection));
 
-            //documentReference.set(testCollection);
-            Intent intent = new Intent(ReadingTestActivity.this, TestResultActivity.class);
-            intent.putExtra("exercise", finalResolvedTest);
-            intent.putExtra("grade", (grade*10.0)/ReadingTestActivity.position);
-            ReadingTestActivity.position = 0;
-            startActivity(intent);
+                //documentReference.set(testCollection);
+                Intent intent = new Intent(ReadingTestActivity.this, TestResultActivity.class);
+                intent.putExtra("exercise", finalResolvedTest);
+                intent.putExtra("grade", (grade*10.0)/ReadingTestActivity.position);
+                ReadingTestActivity.position = 0;
+                startActivity(intent);
+            }
+
         });
 
     }
